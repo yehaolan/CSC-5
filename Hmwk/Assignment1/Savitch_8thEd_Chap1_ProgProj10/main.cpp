@@ -25,17 +25,18 @@ int main(int argc, char** argv) {
     cout << "With a character you input." << endl;
     cout << "Input a character "<< endl;
     cin >> c;
+    cout<<endl<<endl;
     
     //Output a large letter "C" with a character user enter
-    cout << "  " << c << c << c << endl;
-    cout << " " << c << "  " << c << endl;
-    cout << c << "    " << endl;
-    cout << c << "    " << endl;        
-    cout << c << "    " << endl;
-    cout << c << "    " << endl;
-    cout << c << "    " << endl;
-    cout << " " << c << "  " << c << endl;
-    cout << "  " << c << c << c << endl;        
+    cout << "  " << c << c << c << c << c << endl;
+    cout << c << c << "     " << c << c << endl;
+    cout << c <<  endl;
+    cout << c << endl;        
+    cout << c << endl;
+    cout << c << endl;
+    cout << c << endl;
+    cout << c << c << "     " << c << c << endl;
+    cout << "  " << c << c << c << c << c << endl;        
             
     //Exit stage right
     return 0;
