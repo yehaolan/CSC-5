@@ -19,7 +19,7 @@ const char CONVPCT=100;//Percent conversion
 //Execution begins here
 int main(int argc, char** argv) {
     //declare variables
-    short custSrv=12467; //Customers Surveyed
+    short custSrv=12467;//Customers Surveyed
     char perEDrk=14; //Percentage Energy drinkers
     char perCDrk=64;//Percentage Citrus Drinkers
     //calculate customer requested

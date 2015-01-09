@@ -18,10 +18,10 @@ using namespace std;
 //Execution begins here
 int main(int argc, char** argv) {
     //declare 2 variables
-    int num1,//First integer
-        num2,//Second integer
-        sum,//Sum of first and second integer
-        prod;//Product of first and second integer
+    short num1,//First integer
+          num2,//Second integer
+          sum,//Sum of first and second integer
+          prod;//Product of first and second integer
     
     //Prompt user for two integer
     cout << "Input two integers:" << endl;

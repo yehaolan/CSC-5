@@ -12,7 +12,7 @@ using namespace std;
 
 //User Libraries
 
-//Global Constant
+//Global Constants
 
 //Function Prototypes
 
@@ -20,15 +20,15 @@ using namespace std;
 int main(int argc, char** argv) {
     //declare variables
     float mlcrg=44.5,//meal charge
-           taxPer=0.675,//percentage of tax from meal cost
-           tipPer=0.15,//percentage of tip from total after adding tax
-           tax,//tax amount
-           tip,//tip amount
-           total;//total bill
+          taxPer=0.0675,//percentage of tax from meal cost
+          tipPer=0.15,//percentage of tip from total after adding tax
+          tax,//tax amount
+          tip,//tip amount
+          total;//total bill
     
     //calculate the tax,tip, and total amount
     tax = mlcrg*taxPer;
-    tip = tax*tipPer;
+    tip = (tax+mlcrg)*tipPer;
     total = mlcrg+tax+tip;
     
     //format output the results

@@ -12,15 +12,16 @@ using namespace std;
 //User Libraries
 
 //Global Constants
+const char CONVPCT = 100;
 
 //Function Prototype
 
 //Execution begins here
 int main(int argc, char** argv) {
     //Declare variables
-    float percentage = 0.62;//62%
-    unsigned int sales = 4.6E6;//total sales = 4.6million dollars
-    unsigned int division;//(dollars)
+    char divPer = 62;//the percentage of division from sales
+    int sales = 4.6E6;//total sales = 4.6million dollars
+    int division;//(dollars)
     
     //Introduce the percentage of sales division from total sales
     cout << "The East Coast sales division of a company generates\n";
@@ -29,7 +30,7 @@ int main(int argc, char** argv) {
     cout << "This company has $4.6 million in sales this year.\n";
     
     //Calculate the division
-    division = sales * percentage;
+    division = sales*divPer/CONVPCT;
     
     //Output the result
     cout << "The East Coast will generate about $" << division << " division.\n";
