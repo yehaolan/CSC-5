@@ -17,7 +17,7 @@ using namespace std;
 
 //Execution begins here
 int main(int argc, char** argv) {
-    //declare 2 variables
+    //declare 4 variables
     short num1,//First integer
           num2,//Second integer
           sum,//Sum of first and second integer
