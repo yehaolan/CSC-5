@@ -17,8 +17,8 @@ using namespace std;
 //User Libraries
 
 //Global Constants
-const float PIDIV4 = atan(1);
-const float CNVDGRD= PIDIV4/45;
+const float PIDIV4 = atan(1);   //PI/4=atan(1)
+const float CNVDGRD= PIDIV4*4/180; //Pi/4/45 is the conversion
 
 //Function prototypes
 
