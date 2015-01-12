@@ -5,15 +5,34 @@
  * Purpose: Homework assignment(Gaddis_7thEd_Chap3_ProgChal3)
  */
 
-#include <cstdlib>
-
+//System Libraries
+#include <iostream>
+#include <iomanip>
 using namespace std;
 
-/*
- * 
- */
-int main(int argc, char** argv) {
+//User Libraries
 
+//Global Constants
+
+//Function prototypes
+
+//Execution begins here
+int main(int argc, char** argv) {
+    //declare variables
+    short scr1,scr2,scr3,scr4,scr5;//5 scores that user input
+    float avge;//average of 5 scores
+    
+    //Prompt user for 5 scores
+    cout << "Please input five test scores.\n";
+    cin >> scr1 >> scr2 >> scr3 >> scr4 >> scr5;
+    
+    //Calculate average
+    avge = static_cast<float>(scr1 + scr2 + scr3 + scr4 + scr5)/5;
+    
+    //Output the formated result 
+    cout << setprecision(1) << fixed;
+    cout << "The average test score is " << avge << endl;
+    //Exit stage right
     return 0;
 }
 
