@@ -85,7 +85,35 @@ int main(int argc, char** argv) {
     cout <<(!X&&!Y?'T':'F')<<"      ";
     cout <<(!(X&&Y)?'T':'F')<<"       ";
     cout <<(!X||!Y?'T':'F')<<"    ";
-    cout << endl;
+    cout << endl << endl << endl; 
+    
+    //first way swap 
+    cout << "The first way to swap:" << endl;
+    char a='2',b='3';
+    cout << "Before swap, \n";
+    cout << "a = " << a << ", b = " << b << endl;
+    //swap a and b
+    char temp;
+    temp = a;
+    a = b;
+    b = temp;
+    //output the result
+    cout << "After swap, \n";
+    cout << "a = " << a << ", b = " << b << endl << endl;
+    
+    //second way swap
+    cout << "The second way to swap:" << endl;
+    a='2',b='3';
+    cout << "Before swap, \n";
+    cout << "a = " << a << ", b = " << b << endl;
+    //swap a and b
+    a = a^b;
+    b = a^b;
+    a = a^b;
+    //output the result
+    cout << "After swap, \n";
+    cout << "a = " << a << ", b = " << b << endl << endl;
+    
     //Exit stage right
     return 0;
 }
