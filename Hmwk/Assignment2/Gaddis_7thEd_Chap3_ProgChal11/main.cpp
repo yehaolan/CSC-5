@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Haolan Ye(Benjamin)
  * Created on January 12, 2015, 1:20 PM
- * Purpose:Homework assignment(Gaddis_7thEd_Chap3_ProgChal11)
+ * Purpose:bitcoin conversion
  */
 
 //System libraries
@@ -19,21 +19,27 @@ const float ER_P_DOL = 0.85;    //Euros per dollar
 
 //Execution begins here
 int main(int argc, char** argv) {
-    //declare variables
-    unsigned short dol;//the amount in dollars need to exchange
-    float yen,euro;//the amount in yen and euro after exchanging
-    //prompt user for the amount of dollar needing to exchange
-    cout << "How much dollar you want to exchange to Yen and Euros.\n";
-    cout << "Please input an integer between 0 and 1000\n";
-    cin >> dol;
-    //calculate the result
-    yen = dol*YN_P_DOL;
-    euro = dol*ER_P_DOL;
-    //output the result
-    cout << setprecision(2)<< fixed;
-    cout << dol << " dollars exchanges to Yen is  " << yen << " yen.\n";
-    cout << dol << " dollars exchanges to Euro is " << euro << " euros.\n";
-    //exit stage here
+    //declare variables and initialize
+    float bcToDlr=232.8;    //Jan 13th,2015 10:17am
+    float erToDlr=0.849381; //same date
+    float ynToDlr=118.03;   //Same date
+    float bitcoin,dollars,euros,yen;
+    
+    //Input the number of bitcoin and then convert
+    cout << "Input the number of bitcoin " << endl;
+    cout << "You wish to purchase." << endl;
+    cin >> bitcoin;
+    //convert to all the currencies
+    dollars = bcToDlr*bitcoin;
+    euros = erToDlr*dollars;
+    yen = ynToDlr*dollars;
+    //Output the results
+    cout.setf(ios::fixed);
+    cout.precision(2);
+    cout << bitcoin << " = " << dollars << "(dollars)" << endl;
+    cout << bitcoin << " = " << euros << "(euros)" << endl;
+    cout << bitcoin << " = " << yen << "(yen)" << endl;
+    //exit stage right
     return 0;
 }
 
