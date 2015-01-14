@@ -43,7 +43,8 @@ int main(int argc, char** argv) {
         if(difenc>=0) {
             cout << "It is legal to hold the meeting." << endl;
             cout << difenc << " additional people may legal attend." << endl;
-        } else {
+        } 
+        else {
             cout << "The meeting cannot be held as planned due to fire regulations." << endl;
             cout << (-difenc) << " people must be excluded in order ";
             cout << "to meet the fire regulations." << endl;
