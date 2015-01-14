@@ -27,13 +27,13 @@ int main(int argc, char** argv) {
     //open the file
     output.open("RollTheDice.dat");
     //declare 5 dice
-    unsigned short die1,die2,die3,die4,die5;
+    char die1,die2,die3,die4,die5;
     //set the value for each dice
-    die1 = rand()%6+1;
-    die2 = rand()%6+1;
-    die3 = rand()%6+1;
-    die4 = rand()%6+1;
-    die5 = rand()%6+1;
+    die1 = rand()%6+'1';
+    die2 = rand()%6+49;
+    die3 = rand()%6+'1';
+    die4 = rand()%6+49;
+    die5 = rand()%6+'1';
     //Output the result to the screen
     cout << "Yahtzee first roll => ";
     cout << die1 << " " << die2 << " " << die3;
