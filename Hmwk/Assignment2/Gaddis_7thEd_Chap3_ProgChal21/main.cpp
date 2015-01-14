@@ -23,12 +23,12 @@ int main(int argc, char** argv) {
     char cmsPer = 2;//The percentage of commission for transaction
     short shrNum = 1000;//the amount of shares that Joe bought      
     float byPrShr = 32.87,// the price of each share when buy
-            sdPrshr = 33.92,//// the price of each share when sold
-            cmsBuy,//the amount of commission when buy
-            cmsSod,//the amount of commission when sold
-            prf,   //profit after selling stock and paying two commissions
-            stkSod,//the amount of money when he sold the stock
-            stkPrc;//the amount of money when he bought the stock
+          sdPrshr = 33.92,// the price of each share when sold
+          cmsBuy,//the amount of commission when buy
+          cmsSod,//the amount of commission when sold
+          prf,   //profit after selling stock and paying two commissions
+          stkSod,//the amount of money when he sold the stock
+          stkPrc;//the amount of money when he bought the stock
     
     //calculate the result
     stkPrc = shrNum*byPrShr;            //how much he paid for stock
