@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Haolan Ye(Benjamin)
  * Created on January 19, 2015, 1:58 PM
- * Purpose:Homework assignment(Savitch_8thEd_Chap1_ProgProj4)
+ * Purpose:Homework assignment(Savitch_8thEd_Chap1_ProgProj1)
  * Paper-rock-scissor game
  * Only use char in the program
  */

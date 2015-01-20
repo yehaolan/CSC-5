@@ -8,7 +8,6 @@
 //System Libraries
 #include <iostream>
 #include <string>
-#include <cstdlib>
 using namespace std;
 
 //User Libraries
@@ -38,11 +37,13 @@ int main(int argc, char** argv) {
     cout << "2. Air" << endl;
     cout << "3. Helium" << endl;
     cout << "4. Hydrogen" << endl;
-    cout << "5. Quit the Program" << endl;
-    cout << "Please input 1-5 for selecting" << endl;
-    cin >> select;
-    cout << endl;
+    
+    do {
+        cout << "Please input 1-4 for selecting" << endl;
+        cin >> select;
+    } while(select<'1'||select>'4');
     //select the medium
+    
     switch(select) {
         case '1'://carbon dioxide
             medium = "carbon dioxide";
@@ -60,13 +61,9 @@ int main(int argc, char** argv) {
             medium = "hydrogen";
             speed = HYDGN;
             break;
-        case '5'://quit the program
-            cout << "The end of the program" << endl;
-            exit(0);
         default://tell user it is invalid choice
             cout << "This is invalid choice." << endl;
-            cout << "Please run this program again and select from 1 - 5." << endl;
-            exit(0);
+            cout << "Please run this program again and select from 1 - 4." << endl;
     }
     //tell user which medium has been selected, and prompt user for time
     cout << "You have selected " << medium << endl;
