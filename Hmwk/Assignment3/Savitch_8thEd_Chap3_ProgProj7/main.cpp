@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
     
     //Determine the number of 1000's
     char thousands= (number-number%1000)/1000;
-    //Output the thousands in Roman Numberals
+    //Output the thousands in Roman Numerals
     switch(thousands) {
         case 3: cout<<"M";
         case 2: cout<<"M";
@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     }
     
     //Determine the number of 100's
-    number-=thousands*100;
+    number-=thousands*1000;
     char hundreds=(number-number%100)/100;
     //Output the 100's in Roman Numerals
     switch(hundreds) {
@@ -54,7 +54,7 @@ int main(int argc, char** argv) {
     number-=hundreds*100;
     char tens=(number-number%10)/10;
     //Output the 100's in Roman Numerals
-    switch(hundreds) {
+    switch(tens) {
         case 9: cout<<"XC"; break;
         case 8: cout<<"LXXX"; break;
         case 7: cout<<"LXX"; break;
@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
     }
     
     //Determine the number of 10's
-    number-=tens*100;
+    number-=tens*10;
     char ones=number;
     //Output the 100's in Roman Numerals
     switch(ones) {
