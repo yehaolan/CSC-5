@@ -15,8 +15,8 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-float caLoan(float pri,float dnPay);
-float caCost(float loan);
+float caLoan(float pri,float dnPay);//the function to calculate the loan
+float caCost(float loan);//the function to calculate the annual cost
 //Execution begins here
 int main(int argc, char** argv) {
     //declare variables
@@ -55,5 +55,5 @@ float caLoan(float pri,float dnPay) {
 }
 
 float caCost(float loan) {
-    return (loan*0.03-loan*0.06*(1-0.35));
+    return (loan*0.03+loan*0.06*(1-0.35));
 }
