@@ -14,7 +14,8 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-int nFactrl(int);
+int nFactrl(int);//Note: with all
+int nFactr1(int);//Note: with one
 float approxEx(float x);
 
 //Execution begins here
@@ -48,12 +49,29 @@ int nFactrl(int n) {
         return -1;
     }
 }
+
+int nFactr1(int n) {
+    //Declare variables
+    //Note:function only works for value 0 to 13
+    int nFactrl=1;
+    if(n==0||n==1) nFactrl=1;
+    else if(n<=13) {
+        for(int i=2;i<=n;i++){
+               nFactrl*=i;
+        }
+    }
+    else {
+        nFactrl= -1;
+    }
+    return nFactrl;
+}
+
 float approxEx(float x) {
     //declare variables
     float etox=1;
     //calculate e^x
     for(int n=1;n<=13;n++){
-        etox+=(pow(x,n)/nFactrl(n));
+        etox+=(pow(x,n)/nFactr1(n));
     }
     return etox;
 }

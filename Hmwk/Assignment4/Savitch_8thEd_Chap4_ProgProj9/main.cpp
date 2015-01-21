@@ -15,9 +15,9 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void getHat(float weight,float height);
-void getJkt(float weight,float height,short age);
-void getWst(float weight,short age);
+void getHat(float weight,float height);//cal and display hat size
+void getJkt(float weight,float height,short age);//cal and display jacket size
+void getWst(float weight,short age);//cal and display waist size
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -36,10 +36,12 @@ int main(int argc, char** argv) {
     //Prompt user for height, weight, and age
     cout<<"Please input your weight(pounds), height(inches),and age"<<endl;
     cin>>height>>weight>>age;
-    //use a function to calculate and display the hat size at one time
+    //calculate and display the hat size at one time
     getHat(weight,height);
-    //use a function to calculate and display the jacket size at one time
-    
+    //calculate and display the jacket size at one time
+    getJkt(weight,height,age);
+    //calculate and display the waist size at one time
+    getWst(weight,age);
     
     //Exit stage right
     return 0;

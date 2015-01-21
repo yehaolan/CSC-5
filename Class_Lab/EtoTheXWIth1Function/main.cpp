@@ -46,6 +46,7 @@ int nFactrl(int n) {
     else if(n<=13) {
         for(int i=2;i<=n;i++){
                nFactrl*=i;
+               return nFactrl;
         }
     }
     else {
