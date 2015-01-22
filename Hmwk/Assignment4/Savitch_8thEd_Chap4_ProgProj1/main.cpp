@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     float mpg;//mile per gallon
     //Prompt user for liters of gasoline of car and the distance
     do {    
-        cout<<"Input the number of liters of gasoline consumed by you car"<<endl;
+        cout<<"Input the number of liters of gasoline consumed by your car"<<endl;
         cout<<"Note:Please input the positive number"<<endl;
         cin>>gsl;
         if(gsl<=0)
@@ -48,5 +48,5 @@ int main(int argc, char** argv) {
 }
 
 float calMPG(float liter,float dstenc) {
-    return liter*LPRGALN/dstenc;
+    return dstenc*LPRGALN/liter;
 }
