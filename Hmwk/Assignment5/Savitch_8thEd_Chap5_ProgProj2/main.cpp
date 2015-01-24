@@ -13,9 +13,10 @@ using namespace std;
 //User Libraries
 
 //Global Constants
-void getTime(short&,short&,short&,short&);
+void getTime(short&,short&);//get current time
+void wtTime(short&,short&);//get the waiting time
 void calTime(short&,short&,short,short);
-void optTime(short&,short&);
+void optTime2(short&,short&);
 //Function Prototypes
 
 //Execution begins here
@@ -23,16 +24,22 @@ int main(int argc, char** argv) {
     //declare variables
     short hr,min;//current time
     short hrWait,minWait;//waiting hours and minutes
-    getTime(hr,min,hrWait,minWait);
+    
+    getTime(hr,min);
+    wtTime(hrWait,minWait);
+    //Output the input
+    cout<<endl;
+    cout<<"Current time: "<<hr<<":"<<(min<10?"0":"")<<min<<endl;
+    cout<<"Waiting time: "<<hrWait<<":"<<(minWait<10?"0":"")<<minWait<<endl<<endl;
     calTime(hr,min,hrWait,minWait);
-    optTime(hr,min);
+    optTime2(hr,min);
     
     //Prompt user for current time and waiting time
     //Exit stage right
     return 0;
 }
 
-void getTime(short& hr,short& min,short& hrWait,short& minWait) {
+void getTime(short& hr,short& min) {
     //prompt user for current time
     cout<<"What is the current time in 24-hour notation?"<<endl;
     do { //get current hours
@@ -48,6 +55,9 @@ void getTime(short& hr,short& min,short& hrWait,short& minWait) {
             cout<<"Invalid input"<<endl<<endl;
     }while(min<0||min>=60);
     cout<<endl;
+}
+
+void wtTime(short& hrWait,short& minWait) {
     //Prompt user for waiting time
     cout<<"How long is your waiting time?";
     do { //get waiting hours
@@ -62,10 +72,6 @@ void getTime(short& hr,short& min,short& hrWait,short& minWait) {
         if(minWait<0||minWait>=60)
             cout<<"Invalid input"<<endl<<endl;
     }while(minWait<0||minWait>=60);
-    //Output the input
-    cout<<endl;
-    cout<<"Current time: "<<hr<<":"<<(min<10?"0":"")<<min<<endl;
-    cout<<"Waiting time: "<<hrWait<<":"<<(minWait<10?"0":"")<<minWait<<endl<<endl;
 }
 
 void calTime(short& hr,short& min,short hrWait,short minWait) {
@@ -80,7 +86,7 @@ void calTime(short& hr,short& min,short hrWait,short minWait) {
         hr-=24;
 }
  
-void optTime(short& hr,short& min) {
+void optTime2(short& hr,short& min) {
     //Output the results
     cout<<"The time after waiting period is "<<hr<<":"<<(min<10?"0":"")<<min<<endl;
 }
