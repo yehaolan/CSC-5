@@ -7,11 +7,18 @@
 
 //System Libraries
 #include <iostream>
+#include <cmath>
+#include <iomanip>
 using namespace std;
 
 //User libraries
 
 //Global Constants
+const short DIM=10;//dimes
+const short QRT=25;//quarter
+const float MPRF=0.3048;//meters per foot
+const short CMPRM=100;//centimeter per meter
+const short ICPRF=12;//inches per foot
 
 //Function prototype
 void pg1();
@@ -27,7 +34,12 @@ void optTime(short&,short&,char&);//output the time in 12 hours notation
 void wtTime(short&,short&);//get the waiting time
 void calTime(short&,short&,short,short);
 void optTime2(short&,short&);
-
+void calDev(short,short,short,short);
+void calCoin(short);
+void getLth(short&,short&);
+void cnvLth(short,short,float&,float&);
+void optLth(short,short,float,float);
+void calRst(short,short,short,short&,float&);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -39,10 +51,10 @@ int main(int argc, char** argv) {
         cout<<"1.Time Conversion"<<endl;
         cout<<"2.Waiting time(24-hour notation)"<<endl;
         cout<<"3.Waiting time(12-hour notation)"<<endl;
-        cout<<"4."<<endl;
-        cout<<"5."<<endl;
-        cout<<"6."<<endl;
-        cout<<"7."<<endl;
+        cout<<"4.Number Deviation"<<endl;
+        cout<<"5.Coin Change"<<endl;
+        cout<<"6.Length conversion"<<endl;
+        cout<<"7.Triangle Area and Perimeter"<<endl;
         cout<<"0.Quit the program"<<endl;
         do {
             cout<<"Please select the program(0 to 7)"<<endl;
@@ -86,6 +98,7 @@ void pg1() {
 }
 
 void pg2() {
+    //Savitch_8thEd_Chap5_ProgProj2
     //declare variables
     short hr,min;//current time
     short hrWait,minWait;//waiting hours and minutes
@@ -100,6 +113,7 @@ void pg2() {
     optTime2(hr,min);
 }
 void pg3() {
+    //Savitch_8thEd_Chap5_ProgProj3
     //declare variables
     short hr,min;//current time
     short hrWait,minWait;//waiting hours and minutes
@@ -116,16 +130,59 @@ void pg3() {
     optTime(hr,min,time);
 }
 void pg4() {
-    
+    //Savitch_8thEd_Chap5_ProgProj4
+    //declare variables
+    short a,b,c,d;
+    //introduce program
+    cout<<"Welcome to Standard deviation"<<endl;
+    //Prompt user for 4 numbers
+    cout<<"This program calculates the deviation of 4 numbers"<<endl;
+    cout<<"Input 4 numbers"<<endl;
+    cin>>a>>b>>c>>d;
+    //calculate and display the deviation of 4 numbers
+    calDev(a,b,c,d);
 }
 void pg5() {
-    
+    //Savitch_8thEd_Chap5_ProgProj5
+    //declare variables
+    short amt;//the amount of cents user would like to change
+    cout<<"Welcome to Coin Change"<<endl;
+    do {
+        cout<<"Input the amount of cents you would like to change(1 to 99)"<<endl;
+        cin>>amt;
+        if(amt<1||amt>99)
+            cout<<"Invalid input"<<endl;
+    } while(amt<1||amt>99);
+    calCoin(amt);
 }
 void pg6() {
-    
+    //Savitch_8thEd_Chap5_ProgProj6
+    //declare variables
+    short feet,inch;
+    float meter;
+    float cenMe;//centimeter
+    //introduce program
+    cout<<"Welcome to length conversion"<<endl;
+    cout<<"Feet and inches -> meters and centimeter"<<endl;
+    getLth(feet,inch);
+    cnvLth(feet,inch,meter,cenMe);
+    optLth(feet,inch,meter,cenMe);
 }
 void pg7() {
+    //Savitch_8thEd_Chap5_ProgProj13
+    //declare variables
+    short a,b,c;//the length of three sides of triangle
+    short prmt;//perimeter of triangle
+    float area;//area of triangle
+    //Prompt user for three sides of triangles
+    do {
+        cout<<"Input the length of three sides of triangle(integer)"<<endl;
+        cin>>a>>b>>c;
+        if(a+b<=c||a+c<=b||b+c<=a)
+            cout<<"This is not triangle! Please input again"<<endl<<endl;
+    } while(a+b<=c||a+c<=b||b+c<=a);
     
+    calRst(a,b,c,prmt,area);
 }
 
 void getTime(short& hr,short& min) {
@@ -196,4 +253,51 @@ void calTime(short& hr,short& min,short hrWait,short minWait) {
 void optTime2(short& hr,short& min) {
     //Output the results
     cout<<"The time after waiting period is "<<hr<<":"<<(min<10?"0":"")<<min<<endl;
+}
+
+void calDev(short a,short b,short c,short d) {
+    //declare and calculate average of 4 numbers
+    float aver=(a+b+c+d)/4.0f;//average of 4 numbers
+    //calculate deviation
+    float dev=sqrt((aver-a)*(aver-a)+(aver-b)*(aver-b)+(aver-c)*(aver-c)+(aver-d)*(aver-d)/4);
+    cout<<"The deviation of "<<a<<","<<b<<","<<c<<","<<d<<" is "<<dev<<endl;
+}
+
+void calCoin(short amt) {
+    //declare variables
+    short p;//the number of pennies
+    short d;//the number of dimes
+    short q;//the number of quarters
+    q=amt/QRT;
+    d=(amt-q*QRT)/DIM;
+    p=amt-q*QRT-d*DIM;
+    cout<<amt<<" cents can be given as"<<endl;
+    cout<<q<<" quarter(s) "<<d<<" dime(s) and "<<p<<" penny(pennies)"<<endl;
+}
+
+void getLth(short& feet,short& inch) {
+    //Prompt user for feet and inches
+    cout<<"Input a length in feet and inches"<<endl;
+    cout<<"Note: They both should be positive integer"<<endl;
+    cin>>feet>>inch;
+}
+void cnvLth(short feet,short inch,float& meter,float& cenMe) {
+    //convert to meters and centimeters
+    meter=(static_cast<float>(inch)/ICPRF+feet)*MPRF;
+    cenMe=(meter-static_cast<short>(meter))*CMPRM;
+    meter=static_cast<short>(meter);
+}
+void optLth(short feet,short inch,float meter,float cenMe) {
+    cout<<feet<<" feet "<<inch<<" inches is "<<endl;
+    cout<<meter<<" meters "<<cenMe<<" centimeters"<<endl;
+}
+void calRst(short a,short b,short c,short& prmt,float& area) {
+    //declare variables
+    float s;//half of perimeter of triangle
+    prmt=a+b+c;
+    s=prmt/2.0f;
+    area=sqrt(s*(s-a)*(s-b)*(s-c));
+    cout<<setprecision(2)<<fixed;
+    cout<<"The perimeter of the triangle is "<<prmt<<endl;
+    cout<<"The area of the triangle is "<<area<<endl;
 }
