@@ -21,7 +21,7 @@ using namespace std;
 //pass by reference vs. pass by value does not count
 //when overloading the function name
 float retirement(float,float,float,int);
-void retirement(float&,float,float,float);
+void  retirement(float &,float,float,float);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -34,11 +34,12 @@ int main(int argc, char** argv) {
     float nmYears;
     //heading
     cout<<fixed<<setprecision(2)<<showpoint;
-    cout<<"You need to save "<<ndSave<<endl;
+    cout<<"You need to save $"<<ndSave<<endl;
     cout<<"Year       Savings"<<endl;
     //calculate when we can retire
     //for(int year=1;year<=60;year++) {
-    for(int year=1;retSav<=ndSave;year++) {
+    for(int year=1;retSav<=ndSave;year++){
+    //for(int year=1;year<=60;year++){
         //retSav=retirement(0.0,invRate,defPrct*salary,year);
         retSav=0;
         retirement(retSav,invRate,defPrct*salary,year*1.0f);
@@ -57,8 +58,8 @@ float retirement(float p,float i,float d,int n) {
     }
     return p;
 }
-void retirement(float& p,float i,float d,int n) {
-    for(int year=1;year<=n;year++) {
+void retirement(float &p,float i,float d,float n){
+    for(int year=1;year<=n;year++){
         p*=(1+i);
         p+=d;
     }
