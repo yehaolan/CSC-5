@@ -7,11 +7,22 @@
 
 //system Libraries
 #include <cstdlib>
+#include <iostream>
 using namespace std;
 
 //User Libraries
-int main(int argc, char** argv) {
 
+//Global Constants
+
+//Function Prototypes
+
+//Execution begins here
+int main(int argc, char** argv) {
+    //set seed for random number
+    srand(static_cast<unsigned short>(time(0)));
+    //declare variables
+    
+    //Exit stage right
     return 0;
 }
 
