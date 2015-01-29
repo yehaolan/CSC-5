@@ -18,19 +18,19 @@ using namespace std;
 //Function Prototypes
 string toDash(int);//
 void introduce();//introduce the game
-void ask(char& guess,int& digit);
-
+void ask(char&,int&);
+char check(char,int);
 //Execution begins here
 int main(int argc, char** argv) {
     //set seed for random number
     srand(static_cast<unsigned short>(time(0)));
-    //declare variables
-    const int TOTGUESS=15;//total chance of the game
+    //declare and initialize variables
+    const int TOTCHNS=15;//total chance of the game
     const int SIZE=4;//the size of the char array
     string dash;
     string answer;
-    int gusCorr;//how many correct number have been guessed 
-    int chnslft;//chance Counter(how many many)
+    int gusCorr=0;//how many correct number have been guessed 
+    int chnsLft;//chance Counter(how many many)
     int digit;
     char guess;
     char pswd[SIZE];//the password store in the array
@@ -44,10 +44,16 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+48;
     }
-    
     dash=toDash(SIZE);
-    
-    
+    chnsLft=TOTCHNS;
+    while(chnsLft>0&&gusCorr=SIZE) {
+        //Prompt user for the guess
+        cout<<endl;
+        cout<<"The password now looks like this: "<<dash<<endl;
+        cout<<"You have "<<chnsLft<<" chances left"<<endl;
+        ask(guess,digit);
+        char result=check(guess,digit);
+    }
     
     cout<<"Now look like this: "<<dash<<endl;
     for(int i=0;i<SIZE;i++) {
@@ -57,6 +63,8 @@ int main(int argc, char** argv) {
     //Exit stage right
     return 0;
 }
+
+
 
 string toDash(int size) {
     string dashed="";
@@ -85,4 +93,8 @@ void ask(char& guess,int& digit) {
         if(digit<1||digit>4)
             cout<<"Invalid input"<<endl;
     } while(digit<1||digit>4);
+}
+
+char check(char guess,int digit) {
+    
 }
