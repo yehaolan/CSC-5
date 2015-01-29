@@ -20,6 +20,8 @@ string toDash(int);//
 void introduce();//introduce the game
 void ask(char&,int&);
 char check(char,int,const char[],int);
+bool indexOf(char,const char[],int);
+void replace(char[],char,int);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -48,6 +50,11 @@ int main(int argc, char** argv) {
     
     dash=toDash(SIZE);
     chnsLft=TOTCHNS;
+    
+    for(int i=0;i<SIZE;i++) {
+        answer+=pswd[i];
+    }
+    cout<<answer;
     //game begins
     while(chnsLft>0&&gusCorr<SIZE) {
         //Prompt user for the guess
@@ -56,7 +63,7 @@ int main(int argc, char** argv) {
         cout<<"You have "<<chnsLft<<" chances left"<<endl;
         ask(guess,digit);
         char result=check(guess,digit,pswd,SIZE);
-        
+        cout<<result<<endl;
     }
     
     
@@ -100,7 +107,24 @@ void ask(char& guess,int& digit) {
 }
 
 char check(char guess,int digit,const char pswd[],int size) {
-    if(guess==pswd[digit]) {
-        return'1';
-    } else if()
+    if(guess==pswd[digit-1]) {
+        return '1';
+    } else if(indexOf(guess,pswd,size)) {
+        return '2';
+    } else {
+        return '3';
+    }
+}
+
+bool indexOf(char x,const char pswd[],int size) {
+    bool temp=false;
+    for(int i=0;i<size;i++) {
+        if(pswd[i]==x)
+            temp=true;
+    }
+    return temp;
+}
+
+void replace(char pswd[],char guess,int digit) {
+    
 }
