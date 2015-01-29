@@ -19,7 +19,8 @@ using namespace std;
 string toDash(int);//
 void introduce();//introduce the game
 void ask(char&,int&);
-char check(char,int,char[],int);
+char check(char,int,const char[],int);
+
 //Execution begins here
 int main(int argc, char** argv) {
     //set seed for random number
@@ -33,7 +34,7 @@ int main(int argc, char** argv) {
     int chnsLft;//chance Counter(how many many)
     int digit=0;
     char guess=0;
-    char pswd[SIZE];//the password store in the array
+    char pswd[SIZE]={};//the password store in the array
     
     //introduce the game
     introduce();
@@ -44,8 +45,10 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+48;
     }
+    
     dash=toDash(SIZE);
     chnsLft=TOTCHNS;
+    //game begins
     while(chnsLft>0&&gusCorr<SIZE) {
         //Prompt user for the guess
         cout<<endl;
@@ -96,6 +99,8 @@ void ask(char& guess,int& digit) {
     } while(digit<1||digit>4);
 }
 
-char check(char guess,int digit,char pswd[],int size) {
-    
+char check(char guess,int digit,const char pswd[],int size) {
+    if(guess==pswd[digit]) {
+        return'1';
+    } else if()
 }
