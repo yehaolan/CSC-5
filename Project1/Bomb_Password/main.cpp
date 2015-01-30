@@ -21,7 +21,7 @@ void introduce();//introduce the game
 void ask(char&,int&);
 char check(char,int,const char[],int);
 bool indexOf(char,const char[],int);
-void replace(char[],char,int);
+void replace(string& dash,char guess,int digit);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -63,14 +63,32 @@ int main(int argc, char** argv) {
         cout<<"You have "<<chnsLft<<" chances left"<<endl;
         ask(guess,digit);
         char result=check(guess,digit,pswd,SIZE);
-        cout<<result<<endl;
+        switch(result) {
+            case'1': {
+                replace(dash,guess,digit);
+                cout<<"Your guess is correct. Keep going!"<<endl;
+                gusCorr++;
+                break;
+            }
+            case'2': {
+                cout<<"This is the correct number but in wrong place."<<endl;
+                chnsLft--;
+                break;
+            }
+            case'3': {
+                cout<<"Wrong number and wrong place."<<endl;
+                chnsLft--;
+                break;
+            }
+            default:;
+        }
     }
+    if(chnsLft==0)
+        cout<<"You lost"<<endl;
+    if(gusCorr==SIZE)
+        cout<<"You win"<<endl;
     
     
-    for(int i=0;i<SIZE;i++) {
-        answer+=pswd[i];
-    }
-    cout<<answer;
     //Exit stage right
     return 0;
 }
@@ -125,6 +143,8 @@ bool indexOf(char x,const char pswd[],int size) {
     return temp;
 }
 
-void replace(char pswd[],char guess,int digit) {
-    
+void replace(string& dash,char guess,int digit) {
+    string part1=dash.substr(0,(digit-1));
+    string part2=dash.substr(digit);
+    dash=part1+guess+part2;
 }
