@@ -37,6 +37,7 @@ int main(int argc, char** argv) {
     int digit=0;
     char guess=0;
     char pswd[SIZE]={};//the password store in the array
+    int correct[4]={};
     
     //introduce the game
     introduce();
@@ -68,6 +69,7 @@ int main(int argc, char** argv) {
                 replace(dash,guess,digit);
                 cout<<"Your guess is correct. Keep going!"<<endl;
                 gusCorr++;
+                
                 break;
             }
             case'2': {
