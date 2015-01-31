@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 //User Libraries
@@ -18,10 +19,11 @@ using namespace std;
 //Function Prototypes
 string toDash(int);//
 void introduce();//introduce the game
-void ask(char&,int&);
+void ask(char&,int&,const vector<int>);
 char check(char,int,const char[],int);
 bool indexOf(char,const char[],int);
 void replace(string& dash,char guess,int digit);
+bool inside(const vector<int>,int);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -37,7 +39,7 @@ int main(int argc, char** argv) {
     int digit=0;
     char guess=0;
     char pswd[SIZE]={};//the password store in the array
-    int correct[4]={};
+    vector<int> inputDg(SIZE,5);
     
     //introduce the game
     introduce();
@@ -62,14 +64,20 @@ int main(int argc, char** argv) {
         cout<<endl;
         cout<<"The password now looks like this: "<<dash<<endl;
         cout<<"You have "<<chnsLft<<" chances left"<<endl;
-        ask(guess,digit);
+        ask(guess,digit,inputDg);
         char result=check(guess,digit,pswd,SIZE);
         switch(result) {
             case'1': {
                 replace(dash,guess,digit);
-                cout<<"Your guess is correct. Keep going!"<<endl;
-                gusCorr++;
-                
+                if(inside(inputDg,digit)) {
+                    cout<<"You already finish this digit,"
+                        <<"try another digit for this number"<<endl;
+                    gusCorr--;
+                } else {
+                    inputDg.push_back(digit-1);
+                    cout<<"Your guess is correct. Keep going!"<<endl;
+                    gusCorr++;
+                }
                 break;
             }
             case'2': {
@@ -109,7 +117,7 @@ void introduce() {
     
 }
 
-void ask(char& guess,int& digit) {
+void ask(char& guess,int& digit,const vector<int> inputDg) {
     do {
         cout<<"Please input the number you guess"<<endl;
         cin>>guess;
@@ -149,4 +157,13 @@ void replace(string& dash,char guess,int digit) {
     string part1=dash.substr(0,(digit-1));
     string part2=dash.substr(digit);
     dash=part1+guess+part2;
+}
+
+bool inside(const vector<int> inputDg,int digit) {
+    bool temp=false;
+    for(int i=0;i<inputDg.size();i++) {
+        if(inputDg[i]==(digit-1))
+            temp=true;
+    }
+    return temp;
 }
