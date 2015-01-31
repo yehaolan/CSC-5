@@ -30,11 +30,16 @@ bool inside(const vector<int>,int);
 int main(int argc, char** argv) {
     //set seed for random number
     srand(static_cast<unsigned short>(time(0)));
+    //declare a file object
+    ofstream output;
+    //open the file
+    output.open("Score.dat");
     //declare and initialize variables
     const int TOTCHNS=15;//total chance of the game
     const int SIZE=4;//the size of the char array
     string dash;
     string answer;
+    int times=0;
     int gusCorr=0;//how many correct number have been guessed 
     int chnsLft;  //chance counter(how many chances left)
     int digit=0;  //digit of the user guesses
@@ -92,13 +97,16 @@ int main(int argc, char** argv) {
             }
             default:;
         }
+        times++;//keep track of how many times user have input
     }
     if(chnsLft==0)
         cout<<"You lost"<<endl;
-    if(gusCorr==SIZE)
+    if(gusCorr==SIZE) {
         cout<<"You win"<<endl;
-    
-    
+        output<<"You win this game in "<<times<<" inputs"<<endl;
+        cout<<"You win this game in "<<times<<" inputs"<<endl;
+    }
+    output.close();
     //Exit stage right
     return 0;
 }
