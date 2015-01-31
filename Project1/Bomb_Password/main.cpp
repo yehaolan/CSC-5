@@ -39,13 +39,13 @@ int main(int argc, char** argv) {
     const int SIZE=4;//the size of the char array
     string dash;
     string answer;
-    int times=0;
+    int times=0;  //how many times user tried
     int gusCorr=0;//how many correct number have been guessed 
     int chnsLft;  //chance counter(how many chances left)
     int digit=0;  //digit of the user guesses
     char guess=0; //the number user guesses
     char pswd[SIZE]={};//the password store in the array
-    vector<int> inputDg(SIZE,5);
+    vector<int> inputDg(SIZE,5);//the digits finished
     
     //introduce the game
     introduce();
@@ -73,24 +73,24 @@ int main(int argc, char** argv) {
         ask(guess,digit);
         char result=check(guess,digit,pswd,SIZE);
         switch(result) {
-            case'1': {
+            case'1': { //if the number and place both are correct
                 replace(dash,guess,digit);
                 if(inside(inputDg,digit)) {
                     cout<<"You already finish this digit,"
                         <<"try other digit"<<endl;
                 } else {
-                    inputDg.push_back(digit-1);
+                    inputDg.push_back(digit-1);//record the digit which has been finished
                     cout<<"Your guess is correct. Keep going!"<<endl;
                     gusCorr++;
                 }
                 break;
             }
-            case'2': {
+            case'2': { //if number is correct but digit is wrong
                 cout<<"This is the correct number but in wrong place."<<endl;
                 chnsLft--;
                 break;
             }
-            case'3': {
+            case'3': { //if number and digit both wrong
                 cout<<"Wrong number and wrong place."<<endl;
                 chnsLft--;
                 break;
@@ -103,9 +103,10 @@ int main(int argc, char** argv) {
         cout<<"You lost"<<endl;
     if(gusCorr==SIZE) {
         cout<<"You win"<<endl;
-        output<<"You win this game in "<<times<<" inputs"<<endl;
-        cout<<"You win this game in "<<times<<" inputs"<<endl;
+        output<<"You win this game after "<<times<<" try"<<endl;
+        cout<<"You win this game after "<<times<<" try"<<endl;
     }
+    cout<<"The answer is "<<answer;
     output.close();
     //Exit stage right
     return 0;
