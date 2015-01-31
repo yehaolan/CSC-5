@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 //User Libraries
@@ -17,9 +18,9 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-string toDash(int);//
+string toDash(int);//change the password to dash
 void introduce();//introduce the game
-void ask(char&,int&,const vector<int>);
+void ask(char&,int&);
 char check(char,int,const char[],int);
 bool indexOf(char,const char[],int);
 void replace(string& dash,char guess,int digit);
@@ -35,9 +36,9 @@ int main(int argc, char** argv) {
     string dash;
     string answer;
     int gusCorr=0;//how many correct number have been guessed 
-    int chnsLft;//chance Counter(how many many)
-    int digit=0;
-    char guess=0;
+    int chnsLft;  //chance counter(how many chances left)
+    int digit=0;  //digit of the user guesses
+    char guess=0; //the number user guesses
     char pswd[SIZE]={};//the password store in the array
     vector<int> inputDg(SIZE,5);
     
@@ -48,7 +49,7 @@ int main(int argc, char** argv) {
     
     //get a random 4-digit password and put it in array
     for(int i=0;i<SIZE;i++) {
-        pswd[i]=rand()%10+48;
+        pswd[i]=rand()%10+'0';
     }
     
     dash=toDash(SIZE);
@@ -64,15 +65,14 @@ int main(int argc, char** argv) {
         cout<<endl;
         cout<<"The password now looks like this: "<<dash<<endl;
         cout<<"You have "<<chnsLft<<" chances left"<<endl;
-        ask(guess,digit,inputDg);
+        ask(guess,digit);
         char result=check(guess,digit,pswd,SIZE);
         switch(result) {
             case'1': {
                 replace(dash,guess,digit);
                 if(inside(inputDg,digit)) {
                     cout<<"You already finish this digit,"
-                        <<"try another digit for this number"<<endl;
-                    gusCorr--;
+                        <<"try other digit"<<endl;
                 } else {
                     inputDg.push_back(digit-1);
                     cout<<"Your guess is correct. Keep going!"<<endl;
@@ -117,7 +117,7 @@ void introduce() {
     
 }
 
-void ask(char& guess,int& digit,const vector<int> inputDg) {
+void ask(char& guess,int& digit) {
     do {
         cout<<"Please input the number you guess"<<endl;
         cin>>guess;
