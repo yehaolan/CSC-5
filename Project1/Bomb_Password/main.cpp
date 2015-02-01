@@ -7,10 +7,10 @@
 
 //system Libraries
 #include <iostream>
-#include <cstdlib>
-#include <string>
+#include <cstdlib>  //for random number
+#include <string>     
 #include <vector>
-#include <fstream>
+#include <fstream>  //file I/O
 using namespace std;
 
 //User Libraries
@@ -20,11 +20,11 @@ using namespace std;
 //Function Prototypes
 string toDash(int);//change the password to dash
 void introduce();//introduce the game
-void ask(char&,int&);
-char check(char,int,const char[],int);
-bool indexOf(char,const char[],int);
-void replace(string& dash,char guess,int digit);
-bool inside(const vector<int>,int);
+void ask(char&,int&);//ask user for guessing
+char check(char,int,const char[],int);//check whether number and digit are correct
+bool indexOf(char,const char[],int);//return whether the char is in the char array
+void replace(string& dash,char guess,int digit);//replace of the correct digit
+bool inside(const vector<int>,int);//return whether this digit is finished
 void sample();//display the sample of guessing
 
 //Execution begins here
@@ -54,32 +54,30 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+'0';
     }
-    
-    dash=toDash(SIZE);
-    chnsLft=TOTCHNS;
-    
+    dash=toDash(SIZE);//get the dash
+    chnsLft=TOTCHNS;  
+    //Use for loop get the password in strings
     for(int i=0;i<SIZE;i++) {
         answer+=pswd[i];
     }
-    cout<<answer;
     //game begins
     while(chnsLft>0&&gusCorr<SIZE) {
         //Prompt user for the guess
         cout<<endl;
-        cout<<"The password now looks like this: "<<dash<<endl;
-        cout<<"You have "<<chnsLft<<" chances left"<<endl;
-        ask(guess,digit);
-        char result=check(guess,digit,pswd,SIZE);
+        cout<<"The password now looks like this: "<<dash<<endl;//Output dash
+        cout<<"You have "<<chnsLft<<" chances left"<<endl;//output chances left
+        ask(guess,digit);//Prompt user for guess
+        char result=check(guess,digit,pswd,SIZE);//check the guess
         switch(result) {
             case'1': { //if the number and place both are correct
-                replace(dash,guess,digit);
-                if(inside(inputDg,digit)) {
+                replace(dash,guess,digit);//replace of the correct digit
+                if(inside(inputDg,digit)) { //if user have finished that digit
                     cout<<"You already finish this digit,"
-                        <<"try other digit"<<endl;
-                } else {
-                    inputDg.push_back(digit-1);//record the digit which has been finished
+                        <<"try other digits"<<endl;
+                } else {//user didn't finish this digit
+                    inputDg.push_back(digit-1);//record the digit which has been finished to vector
                     cout<<"Your guess is correct."<<endl;
-                    gusCorr++;
+                    gusCorr++; 
                 }
                 break;
             }
@@ -97,11 +95,11 @@ int main(int argc, char** argv) {
         }
         times++;//keep track of how many times user have input
     }
-    if(chnsLft==0) {
+    if(chnsLft==0) { //No chances left for player
         cout<<"You lost"<<endl;
         output<<"You lost"<<endl;
     }
-    if(gusCorr==SIZE) {
+    if(gusCorr==SIZE) { //when 4 digits have been guessed correctly
         output<<"You win this game after "<<times<<" tries"<<endl;
         cout<<"You win this game after "<<times<<" tries"<<endl;
     }
@@ -112,8 +110,6 @@ int main(int argc, char** argv) {
     return 0;
 }
 
-
-
 string toDash(int size) {
     string dashed="";
     for(int i=0;i<size;i++) {
@@ -121,7 +117,6 @@ string toDash(int size) {
     }
     return dashed;
 }
-
 void introduce() {
     cout<<"******Welcome to Bomb password******"<<endl;
     cout<<"In this game, you should guess the password in order to defuse the bomb"<<endl;
@@ -130,6 +125,7 @@ void introduce() {
     cout<<"The digit of the number from left to right is 1,2,3,4"<<endl;
     cout<<"After you input these two information, the computer will tell you"<<endl;
     cout<<"whether the number and digit are correct"<<endl;
+    cout<<"Attention: some digits of password may be the same number"<<endl;
     cout<<"Press Enter to start the game";
     cin.ignore();
 }
@@ -140,8 +136,8 @@ void ask(char& guess,int& digit) {
         cout<<"If you need sample for input, type \'s\'"<<endl;
         cin>>guess;
         cin.ignore();
-        if(guess=='s'||guess=='S')
-            sample();
+        if(guess=='s'||guess=='S') //when player need sample
+            sample();              //output sample via ifstream
         else if(guess<48||guess>57)
             cout<<"Invalid input"<<endl<<endl;
     } while(guess<48||guess>57);
@@ -155,15 +151,16 @@ void ask(char& guess,int& digit) {
 }
 
 char check(char guess,int digit,const char pswd[],int size) {
-    if(guess==pswd[digit-1]) {
+    //Because array counts from 0,but digit from left to right is 1,2,3,4,so it need digit-1 for array
+    if(guess==pswd[digit-1]) { //when guess and digit are correct
         return '1';
-    } else if(indexOf(guess,pswd,size)) {
+    } else if(indexOf(guess,pswd,size)) { //number is right but digit is wrong
         return '2';
-    } else {
+    } else { //both are wrong
         return '3';
     }
 }
-
+//return whether the char is in the array
 bool indexOf(char x,const char pswd[],int size) {
     bool temp=false;
     for(int i=0;i<size;i++) {
@@ -178,7 +175,7 @@ void replace(string& dash,char guess,int digit) {
     string part2=dash.substr(digit);
     dash=part1+guess+part2;
 }
-
+//return whether is digit has been finished
 bool inside(const vector<int> inputDg,int digit) {
     bool temp=false;
     for(int i=0;i<inputDg.size();i++) {
@@ -187,7 +184,7 @@ bool inside(const vector<int> inputDg,int digit) {
     }
     return temp;
 }
-
+//display sample via file
 void sample() {
     string str;
     ifstream input;
