@@ -118,16 +118,16 @@ string toDash(int size) {
     return dashed;
 }
 void introduce() {
-    cout<<"******************Welcome to Bomb password******************"<<endl;
-    cout<<"*In this game, you should guess the 4-digit password       *"<<endl;
-    cout<<"*First, you will input a number that you guess             *"<<endl;
-    cout<<"*Then, you will input the digit of this number             *"<<endl;
-    cout<<"*The digit of the number from left to right is 1,2,3,4     *"<<endl;
-    cout<<"*After you input these two information,the computer        *"<<endl;
-    cout<<"*will tell you whether the number and digit are correct    *"<<endl;
-    cout<<"*Attention: some digits of password may be the same number *"<<endl;
+    cout<<"***************** Welcome to Bomb password *****************"<<endl;
+    cout<<"*    In this game, you should guess the 4-digit password   *"<<endl;
+    cout<<"*       First, you will input a number that you guess      *"<<endl;
+    cout<<"*       Then, you will input the digit of this number      *"<<endl;
+    cout<<"*  The digit of the number from left to right is 1,2,3,4   *"<<endl;
+    cout<<"*    After you input these two information,the computer    *"<<endl;
+    cout<<"*  will tell you whether the number and digit are correct  *"<<endl;
+    cout<<"* Attention: some digits of password may be the same number*"<<endl;
     cout<<"************************************************************"<<endl;
-    cout<<"*Press Enter to start the game";
+    cout<<"Press Enter to start the game";
     cin.ignore();
 }
 
