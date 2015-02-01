@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     //open the file
     output.open("Times.dat");
     //declare and initialize variables
-    const int TOTCHNS=15;//total chance of the game
+    const int TOTCHNS=12;//total chance of the game
     const int SIZE=4;//the size of the char array
     string dash;
     string answer;
@@ -118,15 +118,16 @@ string toDash(int size) {
     return dashed;
 }
 void introduce() {
-    cout<<"******Welcome to Bomb password******"<<endl;
-    cout<<"In this game, you should guess the password in order to defuse the bomb"<<endl;
-    cout<<"First, you will input a number that you guess"<<endl;
-    cout<<"Then, you will input the digit of this number"<<endl;
-    cout<<"The digit of the number from left to right is 1,2,3,4"<<endl;
-    cout<<"After you input these two information, the computer will tell you"<<endl;
-    cout<<"whether the number and digit are correct"<<endl;
-    cout<<"Attention: some digits of password may be the same number"<<endl;
-    cout<<"Press Enter to start the game";
+    cout<<"******************Welcome to Bomb password******************"<<endl;
+    cout<<"*In this game, you should guess the 4-digit password       *"<<endl;
+    cout<<"*First, you will input a number that you guess             *"<<endl;
+    cout<<"*Then, you will input the digit of this number             *"<<endl;
+    cout<<"*The digit of the number from left to right is 1,2,3,4     *"<<endl;
+    cout<<"*After you input these two information,the computer        *"<<endl;
+    cout<<"*will tell you whether the number and digit are correct    *"<<endl;
+    cout<<"*Attention: some digits of password may be the same number *"<<endl;
+    cout<<"************************************************************"<<endl;
+    cout<<"*Press Enter to start the game";
     cin.ignore();
 }
 
@@ -190,7 +191,7 @@ void sample() {
     ifstream input;
     input.open("Sample.dat");
     while(input>>str) {
-        if(str=="Now"||str=="If"||str=="You"||str=="<")
+        if(str=="Now"||str=="If"||str=="You"||str=="<"||str=="Then,")
             cout<<endl;
         cout<<str<<' ';
     }
