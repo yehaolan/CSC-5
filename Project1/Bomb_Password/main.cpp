@@ -54,12 +54,12 @@ int main(int argc, char** argv) {
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+'0';
     }
-    dash=toDash(SIZE);//get the dash
-    chnsLft=TOTCHNS;  
-    //Use for loop get the password in strings
+    //Use for loop get the password into strings
     for(int i=0;i<SIZE;i++) {
         answer+=pswd[i];
     }
+    dash=toDash(SIZE);//get the dash
+    chnsLft=TOTCHNS;
     //game begins
     while(chnsLft>0&&gusCorr<SIZE) {
         //Prompt user for the guess
