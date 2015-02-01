@@ -163,12 +163,12 @@ char check(char guess,int digit,const char pswd[],int size) {
 }
 //return whether the char is in the array
 bool indexOf(char x,const char pswd[],int size) {
-    bool temp=false;
+    bool tem=false;
     for(int i=0;i<size;i++) {
         if(pswd[i]==x)
-            temp=true;
+            tem=true;
     }
-    return temp;
+    return tem;
 }
 
 void replace(string& dash,char guess,int digit) {
