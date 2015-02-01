@@ -6,8 +6,8 @@
  */
 
 //system Libraries
-#include <cstdlib>
 #include <iostream>
+#include <cstdlib>
 #include <string>
 #include <vector>
 #include <fstream>
@@ -25,7 +25,7 @@ char check(char,int,const char[],int);
 bool indexOf(char,const char[],int);
 void replace(string& dash,char guess,int digit);
 bool inside(const vector<int>,int);
-void sample();
+void sample();//display the sample of guessing
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -33,10 +33,8 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned short>(time(0)));
     //declare a file object
     ofstream output;
-    
     //open the file
     output.open("Times.dat");
-    
     //declare and initialize variables
     const int TOTCHNS=15;//total chance of the game
     const int SIZE=4;//the size of the char array
@@ -52,9 +50,6 @@ int main(int argc, char** argv) {
     
     //introduce the game
     introduce();
-    cout<<"Press Enter to start the game";
-    cin.ignore();
-    
     //get a random 4-digit password and put it in array
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+'0';
@@ -110,7 +105,7 @@ int main(int argc, char** argv) {
         output<<"You win this game after "<<times<<" tries"<<endl;
         cout<<"You win this game after "<<times<<" tries"<<endl;
     }
-    cout<<"The answer is "<<answer;
+    cout<<"The answer is "<<answer<<endl;
     output.close();
     
     //Exit stage right
@@ -128,26 +123,34 @@ string toDash(int size) {
 }
 
 void introduce() {
-    
+    cout<<"******Welcome to Bomb password******"<<endl;
+    cout<<"In this game, you should guess the password in order to defuse the bomb"<<endl;
+    cout<<"First, you will input a number that you guess"<<endl;
+    cout<<"Then, you will input the digit of this number"<<endl;
+    cout<<"The digit of the number from left to right is 1,2,3,4"<<endl;
+    cout<<"After you input these two information, the computer will tell you"<<endl;
+    cout<<"whether the number and digit are correct"<<endl;
+    cout<<"Press Enter to start the game";
+    cin.ignore();
 }
 
 void ask(char& guess,int& digit) {
     do {
-        cout<<"Please input the number you guess"<<endl;
+        cout<<"Please input a number you guess"<<endl;
         cout<<"If you need sample for input, type \'s\'"<<endl;
         cin>>guess;
         cin.ignore();
         if(guess=='s'||guess=='S')
             sample();
-        if(guess<48||guess>57||guess!='s'||guess!='S')
-            cout<<"Invalid input"<<endl;
+        else if(guess<48||guess>57)
+            cout<<"Invalid input"<<endl<<endl;
     } while(guess<48||guess>57);
     do {
         cout<<"Please input the digit of this number"<<endl;
         cin>>digit;
         cin.ignore();
         if(digit<1||digit>4)
-            cout<<"Invalid input"<<endl;
+            cout<<"Invalid input"<<endl<<endl;
     } while(digit<1||digit>4);
 }
 
@@ -190,7 +193,7 @@ void sample() {
     ifstream input;
     input.open("Sample.dat");
     while(input>>str) {
-        if(str=="Now"||str=="If"||str=="You")
+        if(str=="Now"||str=="If"||str=="You"||str=="<")
             cout<<endl;
         cout<<str<<' ';
     }
