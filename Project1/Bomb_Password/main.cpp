@@ -25,6 +25,7 @@ char check(char,int,const char[],int);
 bool indexOf(char,const char[],int);
 void replace(string& dash,char guess,int digit);
 bool inside(const vector<int>,int);
+void sample();
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -32,8 +33,10 @@ int main(int argc, char** argv) {
     srand(static_cast<unsigned short>(time(0)));
     //declare a file object
     ofstream output;
+    
     //open the file
-    output.open("Score.dat");
+    output.open("Times.dat");
+    
     //declare and initialize variables
     const int TOTCHNS=15;//total chance of the game
     const int SIZE=4;//the size of the char array
@@ -80,7 +83,7 @@ int main(int argc, char** argv) {
                         <<"try other digit"<<endl;
                 } else {
                     inputDg.push_back(digit-1);//record the digit which has been finished
-                    cout<<"Your guess is correct. Keep going!"<<endl;
+                    cout<<"Your guess is correct."<<endl;
                     gusCorr++;
                 }
                 break;
@@ -99,15 +102,17 @@ int main(int argc, char** argv) {
         }
         times++;//keep track of how many times user have input
     }
-    if(chnsLft==0)
+    if(chnsLft==0) {
         cout<<"You lost"<<endl;
+        output<<"You lost"<<endl;
+    }
     if(gusCorr==SIZE) {
-        cout<<"You win"<<endl;
-        output<<"You win this game after "<<times<<" try"<<endl;
-        cout<<"You win this game after "<<times<<" try"<<endl;
+        output<<"You win this game after "<<times<<" tries"<<endl;
+        cout<<"You win this game after "<<times<<" tries"<<endl;
     }
     cout<<"The answer is "<<answer;
     output.close();
+    
     //Exit stage right
     return 0;
 }
@@ -129,9 +134,12 @@ void introduce() {
 void ask(char& guess,int& digit) {
     do {
         cout<<"Please input the number you guess"<<endl;
+        cout<<"If you need sample for input, type \'s\'"<<endl;
         cin>>guess;
         cin.ignore();
-        if(guess<48||guess>57)
+        if(guess=='s'||guess=='S')
+            sample();
+        if(guess<48||guess>57||guess!='s'||guess!='S')
             cout<<"Invalid input"<<endl;
     } while(guess<48||guess>57);
     do {
@@ -175,4 +183,17 @@ bool inside(const vector<int> inputDg,int digit) {
             temp=true;
     }
     return temp;
+}
+
+void sample() {
+    string str;
+    ifstream input;
+    input.open("Sample.dat");
+    while(input>>str) {
+        if(str=="Now"||str=="If"||str=="You")
+            cout<<endl;
+        cout<<str<<' ';
+    }
+    cout<<endl<<endl;
+    input.close();
 }
