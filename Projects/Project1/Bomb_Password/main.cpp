@@ -23,7 +23,7 @@ void introduce();//introduce the game
 void ask(char&,int&);//ask user for guessing
 char check(char,int,const char[],int);//check whether number and digit are correct
 bool indexOf(char,const char[],int);//return whether the char is in the char array
-void replace(string& dash,char guess,int digit);//replace of the correct digit
+void replace(string&,char,int);//replace of the correct digit
 bool inside(const vector<int>,int);//return whether this digit is finished
 void sample();//display the sample of guessing
 
@@ -70,11 +70,11 @@ int main(int argc, char** argv) {
         char result=check(guess,digit,pswd,SIZE);//check the guess
         switch(result) {
             case'1': { //if the number and place both are correct
-                replace(dash,guess,digit);//replace of the correct digit
                 if(inside(inputDg,digit)) { //if user have finished that digit
                     cout<<"You already finish this digit,"
                         <<"try other digits"<<endl;
                 } else {//user didn't finish this digit
+                    replace(dash,guess,digit);//replace of the correct digit
                     inputDg.push_back(digit-1);//record the digit which has been finished to vector
                     cout<<"Your guess is correct."<<endl;
                     gusCorr++; 
@@ -163,12 +163,12 @@ char check(char guess,int digit,const char pswd[],int size) {
 }
 //return whether the char is in the array
 bool indexOf(char x,const char pswd[],int size) {
-    bool tem=false;
+    bool temp=false;
     for(int i=0;i<size;i++) {
         if(pswd[i]==x)
-            tem=true;
+            temp=true;
     }
-    return tem;
+    return temp;
 }
 
 void replace(string& dash,char guess,int digit) {
