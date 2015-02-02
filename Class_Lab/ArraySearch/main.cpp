@@ -28,10 +28,10 @@ int main(int argc, char** argv) {
     //set seed for random number
     srand(static_cast<unsigned int>(time(0)));
     //declare variables and arrays
-    const int ROW=1000;
+    const int SIZE=1000;
     int pFilRow=100,perLine=10;
-    int array[ROW]={};
-    int found[ROW]={};
+    int array[SIZE]={};
+    int found[SIZE]={};
     //fill the array,vector,2D array
     filAray(array,pFilRow);
     //print the array,vector,2D array
