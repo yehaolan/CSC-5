@@ -54,8 +54,7 @@ int fndVals(int a[],int n,int val,int f[]) {
     int indx,pos=0,count=0;
     f[count++]=Bsearch(pos,a,n,val);
     do {
-        if(count==0) indx=Bsearch(pos,a,n,val);
-        else indx=Bsearch(pos,a,n,val);
+        indx=Bsearch(pos,a,n,val);
         f[count++]=indx;
         pos=indx+1;
     }while(indx>0&&indx<n);
@@ -98,17 +97,16 @@ int Lsearch(int strt,const int a[],int end,int val) {
 void prntFnd(const int a[],int n,int perLine) {
     cout<<endl<<endl;
     if(a[0]==-1){
-        cout<<"The value was not found"<<endl;
+        cout<<"The value was not found"<<endl<<endl;
+        return;
     }
     cout<<"The value was found in these position"<<endl;
     for(int i=0;i<n;i++) {
-        if(a[0]==-1) {
+        if(a[i]==-1) {
             cout<<endl;
             return;
         }
-        
         cout<<a[i]<<" ";
-        
         if(i%perLine==(perLine-1)) cout<<endl;
     }
 }
@@ -124,7 +122,7 @@ void prntAry(const int a[],int n,int perLine) {
 //sequentially fill the array which makes it sorted
 void filAray(int a[],int n) {
     //for 3 of the same value
-    int div=5;
+    int div=10;
     for(int i=0;i<n;i++) {
         a[i]=i/div;
     }
