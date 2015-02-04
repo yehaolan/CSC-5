@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Haolan Ye(Benjamin)
  * Created on January 29, 2015, 9:16 AM
- * Purpose:Utilizing partially filled array
+ * Purpose:Binary search
  */
 
 //System Libraries
@@ -25,7 +25,6 @@ int cntFnd(const int[],int,int);
 int main(int argc, char** argv) {
     //declare variables and arrays
     const int SIZE=1000;
-    int strt=0;
     int end=SIZE;
     int pFilRow=100,perLine=10;
     int array[SIZE]={};
@@ -35,16 +34,14 @@ int main(int argc, char** argv) {
     //print the array
     prntAry(array,pFilRow,perLine);
     //test the linear search
-    int val=9;
+    int val=5;
     cout<<"Where is "<<val<<" found in the array!"<<endl;
     int nTimes=fndVals(array,pFilRow,val,found);
     //Print all the value found
     prntFnd(found,pFilRow,perLine);
     cout<<val<<" was found "<<nTimes<<"="<<cntFnd(array,pFilRow,val)<<" times"<<endl;
    
-    //Binary search
-    cout<<"Using binary search the index of the "<<" Value of "<<val<<" is found at "
-         <<Bsearch(strt,array,end,val)<<endl;
+    
     //Exit stage right
     return 0;
 }
@@ -52,23 +49,24 @@ int main(int argc, char** argv) {
 int fndVals(int a[],int n,int val,int f[]) {
     //loop until you find all the elements in the array
     int indx,pos=0,count=0;
-    f[count++]=Bsearch(pos,a,n,val);
+    Bsearch(pos,a,n,val); //get the change of pos and n
     do {
-        indx=Bsearch(pos,a,n,val);
+        indx=Lsearch(pos,a,n,val);
         f[count++]=indx;
         pos=indx+1;
-    }while(indx>0&&indx<n);
+    }while(indx>=0&&indx<n);
     return --count;
 }
 
 int cntFnd(const int a[],int n,int val) {
     //loop until you find all the elements in the array
     int indx,pos=0,count=0;
+    Bsearch(pos,a,n,val);
     do {
         indx=Lsearch(pos,a,n,val);
         pos=indx+1;
         count++;
-    }while(indx>0&&indx<n);
+    }while(indx>=0&&indx<n);
     return --count;
 }
 

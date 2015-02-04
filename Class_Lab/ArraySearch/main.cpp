@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Haolan Ye(Benjamin)
  * Created on January 29, 2015, 9:16 AM
- * Purpose:Utilizing partially filled array
+ * Purpose:Linear search
  */
 
 //System Libraries
@@ -23,6 +23,7 @@ int Lsearch(int,const int[],int,int);
 int fndVals(int[],int,int,int[]);
 void prntFnd(const int[],int,int);
 int cntFnd(const int[],int,int);
+
 //Execution begins here
 int main(int argc, char** argv) {
     //set seed for random number
