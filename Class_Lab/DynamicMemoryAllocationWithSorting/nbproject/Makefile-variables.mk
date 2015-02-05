@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-MacOSX
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-MacOSX
-CND_ARTIFACT_NAME_Debug=guessing_password
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/guessing_password
+CND_ARTIFACT_NAME_Debug=dynamicmemoryallocationwithsorting
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-MacOSX/dynamicmemoryallocationwithsorting
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-MacOSX/package
-CND_PACKAGE_NAME_Debug=guessingpassword.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/guessingpassword.tar
+CND_PACKAGE_NAME_Debug=dynamicmemoryallocationwithsorting.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-MacOSX/package/dynamicmemoryallocationwithsorting.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-MacOSX
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-MacOSX
-CND_ARTIFACT_NAME_Release=guessing_password
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/guessing_password
+CND_ARTIFACT_NAME_Release=dynamicmemoryallocationwithsorting
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-MacOSX/dynamicmemoryallocationwithsorting
 CND_PACKAGE_DIR_Release=dist/Release/GNU-MacOSX/package
-CND_PACKAGE_NAME_Release=guessingpassword.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/guessingpassword.tar
+CND_PACKAGE_NAME_Release=dynamicmemoryallocationwithsorting.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-MacOSX/package/dynamicmemoryallocationwithsorting.tar
 #
 # include compiler specific variables
 #

@@ -15,19 +15,13 @@ using namespace std;
 const int COL=4;
 //Function prototypes
 void filAray(char[][COL],int);
-
+void prtAray(char[][COL],int);
 //Execution Begins here
 int main(int argc, char** argv) {
     const int ROW=7;
     char sit[ROW][COL]={};
     filAray(sit,ROW);
-    for(int i=0;i<ROW;i++) {
-        cout<<(i+1)<<" ";
-        for(int j=0;j<COL;j++) {
-            cout<<sit[i][j]<<" ";
-        }
-        cout<<endl;
-    }
+    prtAray(sit,ROW);
     //Exit stage right
     return 0;
 }
@@ -40,5 +34,15 @@ void filAray(char a[][COL],int ROW) {
             if(i==2) a[j][i]='C';
             if(i==3) a[j][i]='D';
         }
+    }
+}
+
+void prtAray(char a[][COL],int ROW) {
+    for(int i=0;i<ROW;i++) {
+        cout<<(i+1)<<" ";
+        for(int j=0;j<COL;j++) {
+            cout<<a[i][j]<<" ";
+        }
+        cout<<endl;
     }
 }

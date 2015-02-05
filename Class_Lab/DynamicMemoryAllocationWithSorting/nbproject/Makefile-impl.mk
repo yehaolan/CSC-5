@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Guessing_Password
+PROJECTNAME=DynamicMemoryAllocationWithSorting
 
 # Active Configuration
 DEFAULTCONF=Debug
