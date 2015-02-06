@@ -16,14 +16,38 @@ const int COL=4;
 //Function prototypes
 void filAray(char[][COL],int);
 void prtAray(char[][COL],int);
+void assign(const char [],char[][COL],int);
+
 //Execution Begins here
 int main(int argc, char** argv) {
+    //declare variables
     const int ROW=7;
+    const int CHNUM=3;//limit the char of user input
     char sit[ROW][COL]={};
-    filAray(sit,ROW);
-    prtAray(sit,ROW);
+    char select[CHNUM];
+    filAray(sit,ROW);//fill the sit in order
+    do {
+        prtAray(sit,ROW);//print out the sit
+        do {
+            cout<<"Which seat you would like to choose?(For example: 4A.)"<<endl;
+            cout<<"Note:Input one seat at one time.Please input capital letter!"<<endl;
+            cin>>select;
+            if(select[0]<48||select[0]>57||select[1]<65||select[1]>68)
+                cout<<"Invalid input"<<endl;
+        }while(select[0]<48||select[0]>57);
+        assign(select,sit,ROW);
+    }while(select[0]!='0');
     //Exit stage right
     return 0;
+}
+
+void assign(const char sl[],char sit[][COL],int ROW) {
+    int r=static_cast<int>(sl[0]-49);
+    int c=static_cast<int>(sl[1]-65);
+    if(sit[r][c]!='X')
+        sit[r][c]='X';
+    else
+        cout<<"Sorry,this seat is occupied,please select other seats"<<endl;
 }
 
 void filAray(char a[][COL],int ROW) {
@@ -38,8 +62,10 @@ void filAray(char a[][COL],int ROW) {
 }
 
 void prtAray(char a[][COL],int ROW) {
+    cout<<endl;
+    cout<<"The seat of airplane looks like that(X means it is occupied):"<<endl;
     for(int i=0;i<ROW;i++) {
-        cout<<(i+1)<<" ";
+        cout<<" "<<(i+1)<<" ";
         for(int j=0;j<COL;j++) {
             cout<<a[i][j]<<" ";
         }
