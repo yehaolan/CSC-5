@@ -7,7 +7,6 @@
 
 //system Libraries
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 
 //User libraries
@@ -15,69 +14,60 @@ using namespace std;
 //Global Constants
 
 //Function Prototypes
-void getOcc(const char [],char [],const int,int &);
-void gtTimes(const char [],const int,int [],const char [],int);
-void sort(char [],int,int []);
+void getOcc(const char [],char [],const int,int &);//get occurred letters
+void gtTimes(const char [],const int,int [],const char [],int);//get the number of occurrence of letter
+void sort(char [],int,int []);//sort two array at a time
+
 //Execution begins here
 int main(int argc, char** argv) {
     //declare variables
     const int SIZE=100;
-    char line[SIZE];
-    char occed[SIZE];
-    int occTm[SIZE];
+    char line[SIZE];//the sentence of input
+    char occed[SIZE];//array of all occurred letter 
+    int occTm[SIZE];//array of number of occurrence of letter
     int count=0;
-    bool corr;
+    bool wro;//wrong
     //Introduce the program
     cout<<"This program can find out the number of "<<endl;
     cout<<"occurrence of letter in a sentence"<<endl;
     //Prompt user for a lowercase sentence with period ending
     do {
-        corr=true;
-        cout<<"Input a sentence which is ended with period"<<endl;
+        wro=false;
+        cout<<endl<<"Input a sentence which is ended with period"<<endl;
         cout<<"Note:Only lowercase letter can be accepted"<<endl;
         cin.getline(line,SIZE);
-        cout<<endl;
-        cout<<strlen(line)<<endl;
-        if(line[strlen(line)-1]!='.') corr=false;
         for(int i=0;i<strlen(line)-1;i++) {
-            if(line[i]==' ') corr=true;
-            else if(line[i]<97||line[i]>122) corr=false;
+            if(line[i]==' ') wro=false;
+            else if(line[i]<97||line[i]>122) wro=true;
         }
-    }while(!corr);
+        if(line[0]==' ') wro=true;
+        if(line[strlen(line)-1]!='.') wro=true;
+    }while(wro);
+    //get occurred letters
     getOcc(line,occed,strlen(line)-1,count);
-    
-    for(int i=0;i<count;i++) {
-        cout<<occed[i];
-    }
-    cout<<endl;
+    //get the number of occurrence of letter
     gtTimes(occed,count,occTm,line,strlen(line)-1);
-    for(int i=0;i<count;i++) {
-        cout<<occTm[i];
-    }
-    cout<<"After sorting "<<endl;
-    
     sort(occed,count,occTm);
+    cout<<" Letter  "<<" Number of occurrence"<<endl;
     for(int i=0;i<count;i++) {
-        cout<<occed[i];
+        cout<<"    "<<occed[i]<<"            "<<occTm[i]<<endl;
     }
-    cout<<endl;
-    for(int i=0;i<count;i++) {
-        cout<<occTm[i];
-    }
-    //Execution begins here
+    //EXit stage right
     return 0;
 }
-
+//find out all occurring letter
 void getOcc(const char line[],char occ[],const int N,int &count) {
     bool repe;
     for(int i=0;i<N;i++) {
         repe=false;
         for(int j=0;j<i;j++){
             if(occ[j]==line[i]) repe=true;
+            if(line[i]==' ') repe=true;
         }
         if(!repe) occ[count++]=line[i];
     }
 }
+//get how many times of all occurred letters occur
 void gtTimes(const char occ[],const int n,int occTm[],const char line[],int len) {
     int count;
     for(int i=0;i<n;i++) {
@@ -89,7 +79,9 @@ void gtTimes(const char occ[],const int n,int occTm[],const char line[],int len)
     }
 }
 
+//sort the array that store occur letters and array that store number of occurrence of these letter 
 void sort(char occ[],int n,int occTm[]) {
+    //mark sort
     for(int i=0;i<n-1;i++) {
         for(int j=i+1;j<n;j++) {
             if(occTm[i]<occTm[j]) {
