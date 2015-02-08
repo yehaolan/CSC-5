@@ -31,10 +31,11 @@ int main(int argc, char** argv) {
         do {
             cout<<"Which seat you would like to choose?(For example: 4A.)"<<endl;
             cout<<"Note:Input one seat at one time.Please input capital letter!"<<endl;
+            cout<<"Enter 0 to exit the program"<<endl;
             cin>>select;
-            if(select[0]<48||select[0]>57||select[1]<65||select[1]>68)
+            if(select[0]<48||select[0]>55||select[1]<65||select[1]>68)
                 cout<<"Invalid input"<<endl;
-        }while(select[0]<48||select[0]>57);
+        }while(select[0]<48||select[0]>55);
         assign(select,sit,ROW);
     }while(select[0]!='0');
     //Exit stage right

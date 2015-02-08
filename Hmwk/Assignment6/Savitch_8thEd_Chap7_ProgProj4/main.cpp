@@ -16,6 +16,7 @@ using namespace std;
 
 //Function Prototypes
 float calSD(const float[],int);
+
 //Execution begins here
 int main(int argc, char** argv) {
     //declare variables

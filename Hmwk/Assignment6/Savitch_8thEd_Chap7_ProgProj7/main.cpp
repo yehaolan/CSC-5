@@ -18,7 +18,7 @@ using namespace std;
 void input(char [],int);//Prompt user for numbers
 void chToInt(const char [],int,int []);//change char array to int array
 void reverse(int [],const int);//reverse the array
-void add(int [],const int [],int,const int [],int);//add two numbers and put it to new array]
+void add(int [],const int [],int,const int [],int);//add two numbers and put it to new array
 
 //execution begins here
 int main(int argc, char** argv) {
