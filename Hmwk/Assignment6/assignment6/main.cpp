@@ -108,8 +108,8 @@ void pg1() {
     //declare variables
     const int SIZE=100; //the size of array
     float array[SIZE];  
-    int num;//the number of number user wants to input
-    float sd;//standard deviation
+    int num=0;//the number of number user wants to input
+    float sd=0;//standard deviation
     //Prompt user for number of inputs
     cout<<"Input the number of inputs you would"<<endl;
     cout<<"like to calculate standard deviation"<<endl;
@@ -288,16 +288,14 @@ void pg6() {
         do {
             cout<<"Which seat you would like to choose?(For example: 4A.)"<<endl;
             cout<<"Note:Input one seat at one time.Please input capital letter!"<<endl;
-            cout<<"Enter 0 to exit the program"<<endl;
+            cout<<"Enter 0A to exit the program"<<endl;
             cin>>select;
-            if(select[0]=='0') {
-                cout<<"This is the end of selection"<<endl;
-            }else if(select[0]<49||select[0]>55||select[1]<65||select[1]>68) {
+            if(select[0]<48||select[0]>55||select[1]<65||select[1]>68) {
                 cout<<"Invalid input"<<endl;
             }
-        }while(select[0]<48||select[0]>55);
+        }while(select[0]<48||select[0]>55||select[1]<65||select[1]>68);
         assign(select,sit,ROW);
-    }while(select[0]!='0');
+    }while(select[0]!='0'&&select[1]!='A');
 }
 void pg7() {
     //Savitch_8thEd_Chap7_ProgProj13
@@ -535,9 +533,9 @@ void filAray(char a[][COL],int ROW) {
     for(int i=0;i<COL;i++) {
         for(int j=0;j<ROW;j++) {
             if(i==0) a[j][i]='A';
-            if(i==1) a[j][i]='B';
-            if(i==2) a[j][i]='C';
-            if(i==3) a[j][i]='D';
+            else if(i==1) a[j][i]='B';
+            else if(i==2) a[j][i]='C';
+            else a[j][i]='D';
         }
     }
 }

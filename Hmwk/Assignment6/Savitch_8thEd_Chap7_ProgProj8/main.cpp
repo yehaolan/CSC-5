@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
     //get the number of occurrence of letter
     gtTimes(occed,count,occTm,line,strlen(line)-1);
     sort(occed,count,occTm);
-    cout<<" Letter  "<<" Number of occurrence"<<endl;
+    cout<<endl<<" Letter  "<<" Number of occurrence"<<endl;
     for(int i=0;i<count;i++) {
         cout<<"    "<<occed[i]<<"            "<<occTm[i]<<endl;
     }

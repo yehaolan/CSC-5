@@ -35,9 +35,9 @@ int main(int argc, char** argv) {
             cin>>select;
             if(select[0]<48||select[0]>55||select[1]<65||select[1]>68)
                 cout<<"Invalid input"<<endl;
-        }while(select[0]<48||select[0]>55);
+        }while(select[0]<48||select[0]>55||select[1]<65||select[1]>68);
         assign(select,sit,ROW);
-    }while(select[0]!='0');
+    }while(select[0]!='0'&&select[1]!='A');
     //Exit stage right
     return 0;
 }
@@ -55,9 +55,9 @@ void filAray(char a[][COL],int ROW) {
     for(int i=0;i<COL;i++) {
         for(int j=0;j<ROW;j++) {
             if(i==0) a[j][i]='A';
-            if(i==1) a[j][i]='B';
-            if(i==2) a[j][i]='C';
-            if(i==3) a[j][i]='D';
+            else if(i==1) a[j][i]='B';
+            else if(i==2) a[j][i]='C';
+            else a[j][i]='D';
         }
     }
 }
