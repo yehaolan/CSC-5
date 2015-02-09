@@ -69,7 +69,6 @@ int main(int argc, char** argv) {
         size=SIZE1;
     else 
         size=SIZE2;
-    
     //get a random password and put it in array
     gtPswd(pswd,level,SIZE1,SIZE2);
     
@@ -220,23 +219,29 @@ void sample() {
 }
 //randomly generate the password
 void gtPswd(char pswd[],int level,const int SIZE1,const int SIZE2){
-    bool diff;
+    bool diff=true;
     if(level==1) {
-        for(int i=0;strlen(pswd)<SIZE1;i++) {
-            diff=true;
-            char temp=rand()%10+'0';
-            for(int j=0;j<i;j++) {
+        for(int i=0;i<SIZE1;i++) {
+            char temp;
+            do {
+                diff=true;
+                temp=rand()%10+'0';
+                for(int j=0;j<i;j++) {
                 if(temp==pswd[j]) diff=false;
-            }
-            if(diff) pswd[i]=temp;
+                }
+            }while(diff==false);
+            pswd[i]=temp;
+            cout<<temp;
         }
     } else if(level==2) {
         for(int i=0;i<SIZE1;i++) {
             pswd[i]=rand()%10+'0';
+            cout<<pswd[i];
         }
     } else {
         for(int i=0;i<SIZE2;i++) {
             pswd[i]=rand()%10+'0';
+            cout<<pswd[i];
         }
     }
 }
