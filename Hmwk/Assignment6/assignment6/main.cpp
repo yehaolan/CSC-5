@@ -54,7 +54,6 @@ void inject(char[][COL1],int,int,char);
 void pause(int);
 void gnrashn(char[][COL1],char[][COL1],int,char,char);
 int cntNbor(char[][COL1],int,char,int,int);
-void GetLine(string &,char []);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -641,11 +640,4 @@ int cntNbor(char a[][COL1],int ROW,char d,int r,int c) {
     if(a[r+1][c]==d)  count++;
     if(a[r+1][c+1]==d)  count++;
     return count;
-}
-
-void GetLine(string &sent,char a[]) {
-    getline(cin,sent);
-    for(int i=0;i<sent.length();i++) {
-        a[i]=sent.at(i);
-    }
 }
