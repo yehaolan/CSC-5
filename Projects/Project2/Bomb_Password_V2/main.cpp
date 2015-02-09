@@ -70,18 +70,14 @@ int main(int argc, char** argv) {
     else 
         size=SIZE2;
     
-    //get a random 4-digit password and put it in array
+    //get a random password and put it in array
     gtPswd(pswd,level,SIZE1,SIZE2);
-    //for(int i=0;i<size;i++) {
-    //   pswd[i]=rand()%10+'0';
-    //}
+    
     //Use for loop get the password into strings
     for(int i=0;i<size;i++) {
         answer+=pswd[i];
     }
-    for(int i=0;i<size;i++) {
-        cout<<pswd[i];
-    }
+    
     dash=toDash(size);//get the dash
     chnsLft=TOTCHNS;
     //game begins
@@ -146,7 +142,7 @@ void introduce() {
     cout<<"*    In this game, you should guess the 4-digit password   *"<<endl;
     cout<<"*       First, you will input a number that you guess      *"<<endl;
     cout<<"*       Then, you will input the digit of this number      *"<<endl;
-    cout<<"*  The digit of the number from left to right is 1,2,3,4   *"<<endl;
+    cout<<"*  The digit of the number from left to right is 1,2,3...  *"<<endl;
     cout<<"*    After you input these two information,the computer    *"<<endl;
     cout<<"*  will tell you whether the number and digit are correct  *"<<endl;
     cout<<"* Attention: some digits of password may be the same number*"<<endl;
