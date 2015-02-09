@@ -36,10 +36,11 @@ int main(int argc, char** argv) {
     //open the file
     output.open("Times.dat");
     //declare and initialize variables
-    const int TOTCHNS=12;//total chance of the game
-    const int SIZE=4;//the size of the char array
+    const int TOTCHNS=20;//total chance of the game
+    const int SIZE=6;//the size of the char array
     string dash;
     string answer;
+    int level;
     int times=0;  //how many times user tried
     int gusCorr=0;//how many correct number have been guessed 
     int chnsLft;  //chance counter(how many chances left)
@@ -50,6 +51,17 @@ int main(int argc, char** argv) {
     
     //introduce the game
     introduce();
+    do {
+        cout<<endl<<"*******LEVEL SELECTION*******"<<endl;
+        cout<<"    1.Easy(No Repeat Number)"<<endl;
+        cout<<"    2.Normal(Might has repeat number)"<<endl;
+        cout<<"    3.Hard(6-digit and might has repeat number)"<<endl;
+        cout<<"Please choose a level"<<endl;
+        cin>>level;
+        if(level<1||level>3) 
+            cout<<"Invalid Input"<<endl;
+    }while(level<1||level>3);
+    
     //get a random 4-digit password and put it in array
     for(int i=0;i<SIZE;i++) {
         pswd[i]=rand()%10+'0';
