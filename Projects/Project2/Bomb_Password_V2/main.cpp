@@ -20,12 +20,14 @@ using namespace std;
 //Function Prototypes
 string toDash(int);//change the password to dash
 void introduce();//introduce the game
-void ask(char&,int&);//ask user for guessing
+void gtPswd(char [],int,const int,const int);
+void ask(char&,int&,int);//ask user for guessing
 char check(char,int,const char[],int);//check whether number and digit are correct
 bool indexOf(char,const char[],int);//return whether the char is in the char array
 void replace(string&,char,int);//replace of the correct digit
 bool inside(const vector<int>,int);//return whether this digit is finished
 void sample();//display the sample of guessing
+
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -37,7 +39,9 @@ int main(int argc, char** argv) {
     output.open("Times.dat");
     //declare and initialize variables
     const int TOTCHNS=20;//total chance of the game
-    const int SIZE=6;//the size of the char array
+    const int SIZE1=4;
+    const int SIZE2=6;
+    int size;
     string dash;
     string answer;
     int level;
@@ -46,8 +50,8 @@ int main(int argc, char** argv) {
     int chnsLft;  //chance counter(how many chances left)
     int digit=0;  //digit of the user guesses
     char guess=0; //the number user guesses
-    char pswd[SIZE]={};//the password store in the array
-    vector<int> inputDg(SIZE,5);//the digits finished
+    char pswd[SIZE2]={};//the password store in the array
+    vector<int> inputDg;//the digits finished
     
     //introduce the game
     introduce();
@@ -61,25 +65,33 @@ int main(int argc, char** argv) {
         if(level<1||level>3) 
             cout<<"Invalid Input"<<endl;
     }while(level<1||level>3);
+    if(level==1||level==2)
+        size=SIZE1;
+    else 
+        size=SIZE2;
     
     //get a random 4-digit password and put it in array
-    for(int i=0;i<SIZE;i++) {
-        pswd[i]=rand()%10+'0';
-    }
+    gtPswd(pswd,level,SIZE1,SIZE2);
+    //for(int i=0;i<size;i++) {
+    //   pswd[i]=rand()%10+'0';
+    //}
     //Use for loop get the password into strings
-    for(int i=0;i<SIZE;i++) {
+    for(int i=0;i<size;i++) {
         answer+=pswd[i];
     }
-    dash=toDash(SIZE);//get the dash
+    for(int i=0;i<size;i++) {
+        cout<<pswd[i];
+    }
+    dash=toDash(size);//get the dash
     chnsLft=TOTCHNS;
     //game begins
-    while(chnsLft>0&&gusCorr<SIZE) {
+    while(chnsLft>0&&gusCorr<size) {
         //Prompt user for the guess
         cout<<endl;
         cout<<"The password now looks like this: "<<dash<<endl;//Output dash
         cout<<"You have "<<chnsLft<<" chances left"<<endl;//output chances left
-        ask(guess,digit);//Prompt user for guess
-        char result=check(guess,digit,pswd,SIZE);//check the guess
+        ask(guess,digit,size);//Prompt user for guess
+        char result=check(guess,digit,pswd,size);//check the guess
         switch(result) {
             case'1': { //if the number and place both are correct
                 if(inside(inputDg,digit)) { //if user have finished that digit
@@ -111,7 +123,7 @@ int main(int argc, char** argv) {
         cout<<"You lost"<<endl;
         output<<"You lost"<<endl;
     }
-    if(gusCorr==SIZE) { //when 4 digits have been guessed correctly
+    if(gusCorr==size) { //when 4 digits have been guessed correctly
         output<<"You win this game after "<<times<<" tries"<<endl;
         cout<<"You win this game after "<<times<<" tries"<<endl;
     }
@@ -143,7 +155,7 @@ void introduce() {
     cin.ignore();
 }
 
-void ask(char& guess,int& digit) {
+void ask(char& guess,int& digit,int size) {
     do {
         cout<<"Please input a number you guess"<<endl;
         cout<<"If you need sample for input, type \'s\'"<<endl;
@@ -158,9 +170,9 @@ void ask(char& guess,int& digit) {
         cout<<"Please input the digit of this number"<<endl;
         cin>>digit;
         cin.ignore();
-        if(digit<1||digit>4)
+        if(digit<1||digit>size)
             cout<<"Invalid input"<<endl<<endl;
-    } while(digit<1||digit>4);
+    } while(digit<1||digit>size);
 }
 
 char check(char guess,int digit,const char pswd[],int size) {
@@ -209,4 +221,26 @@ void sample() {
     }
     cout<<endl<<endl;
     input.close();
+}
+//randomly generate the password
+void gtPswd(char pswd[],int level,const int SIZE1,const int SIZE2){
+    bool diff;
+    if(level==1) {
+        for(int i=0;strlen(pswd)<SIZE1;i++) {
+            diff=true;
+            char temp=rand()%10+'0';
+            for(int j=0;j<i;j++) {
+                if(temp==pswd[j]) diff=false;
+            }
+            if(diff) pswd[i]=temp;
+        }
+    } else if(level==2) {
+        for(int i=0;i<SIZE1;i++) {
+            pswd[i]=rand()%10+'0';
+        }
+    } else {
+        for(int i=0;i<SIZE2;i++) {
+            pswd[i]=rand()%10+'0';
+        }
+    }
 }
