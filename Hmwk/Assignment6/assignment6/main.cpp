@@ -260,7 +260,8 @@ void pg5() {
         wro=false;
         cout<<endl<<"Input a sentence which is ended with period"<<endl;
         cout<<"Note:Only lowercase letter can be accepted"<<endl;
-        cin>>line;
+        cin.ignore();
+        cin.getline(line,SIZE);
         //GetLine(sent,line);
         for(int i=0;i<strlen(line)-1;i++) {
             if(line[i]==' ') wro=false;
