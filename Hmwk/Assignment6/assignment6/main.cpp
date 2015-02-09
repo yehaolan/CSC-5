@@ -25,10 +25,10 @@ const int COL1=30;
 void pg1();//Savitch_8thEd_Chap7_ProgProj4
 void pg2();//Savitch_8thEd_Chap7_ProgProj5
 void pg3();//Savitch_8thEd_Chap7_ProgProj6
-void pg4();
-void pg5();
-void pg6();
-void pg7();
+void pg4();//Savitch_8thEd_Chap7_ProgProj7
+void pg5();//Savitch_8thEd_Chap7_ProgProj8
+void pg6();//Savitch_8thEd_Chap7_ProgProj11
+void pg7();//Savitch_8thEd_Chap7_ProgProj13
 float calSD(const float[],int);
 void dspOcur(int[],int);
 void bubSort(int [],int);
@@ -54,6 +54,7 @@ void inject(char[][COL1],int,int,char);
 void pause(int);
 void gnrashn(char[][COL1],char[][COL1],int,char,char);
 int cntNbor(char[][COL1],int,char,int,int);
+void GetLine(string &,char []);
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -244,20 +245,23 @@ void pg5() {
     //Savitch_8thEd_Chap7_ProgProj8
     //declare variables
     const int SIZE=100;
-    char line[SIZE];//the sentence of input
-    char occed[SIZE];//array of all occurred letter 
-    int occTm[SIZE];//array of number of occurrence of letter
+    char line[SIZE]={};//the sentence of input
+    char occed[SIZE]={};//array of all occurred letter 
+    int occTm[SIZE]={};//array of number of occurrence of letter
     int count=0;
-    bool wro;//wrong
+    string sent="";//sentence that user input
+    bool wro=false;//wrong
     //Introduce the program
     cout<<"This program can find out the number of "<<endl;
     cout<<"occurrence of letter in a sentence"<<endl;
     //Prompt user for a lowercase sentence with period ending
     do {
+        sent="";
         wro=false;
         cout<<endl<<"Input a sentence which is ended with period"<<endl;
         cout<<"Note:Only lowercase letter can be accepted"<<endl;
-        cin.getline(line,SIZE);
+        cin>>line;
+        //GetLine(sent,line);
         for(int i=0;i<strlen(line)-1;i++) {
             if(line[i]==' ') wro=false;
             else if(line[i]<97||line[i]>122) wro=true;
@@ -636,4 +640,11 @@ int cntNbor(char a[][COL1],int ROW,char d,int r,int c) {
     if(a[r+1][c]==d)  count++;
     if(a[r+1][c+1]==d)  count++;
     return count;
+}
+
+void GetLine(string &sent,char a[]) {
+    getline(cin,sent);
+    for(int i=0;i<sent.length();i++) {
+        a[i]=sent.at(i);
+    }
 }

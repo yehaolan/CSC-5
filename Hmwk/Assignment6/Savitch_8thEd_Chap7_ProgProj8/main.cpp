@@ -17,25 +17,28 @@ using namespace std;
 void getOcc(const char [],char [],const int,int &);//get occurred letters
 void gtTimes(const char [],const int,int [],const char [],int);//get the number of occurrence of letter
 void sort(char [],int,int []);//sort two array at a time
+void GetLine(string &,char []);
 
 //Execution begins here
 int main(int argc, char** argv) {
     //declare variables
     const int SIZE=100;
-    char line[SIZE];//the sentence of input
-    char occed[SIZE];//array of all occurred letter 
-    int occTm[SIZE];//array of number of occurrence of letter
+    char line[SIZE]={};//the sentence of input
+    char occed[SIZE]={};//array of all occurred letter 
+    int occTm[SIZE]={};//array of number of occurrence of letter
     int count=0;
+    string sent="";//sentence user input
     bool wro;//wrong
     //Introduce the program
     cout<<"This program can find out the number of "<<endl;
     cout<<"occurrence of letter in a sentence"<<endl;
     //Prompt user for a lowercase sentence with period ending
     do {
+        sent="";
         wro=false;
         cout<<endl<<"Input a sentence which is ended with period"<<endl;
         cout<<"Note:Only lowercase letter can be accepted"<<endl;
-        cin.getline(line,SIZE);
+        GetLine(sent,line);
         for(int i=0;i<strlen(line)-1;i++) {
             if(line[i]==' ') wro=false;
             else if(line[i]<97||line[i]>122) wro=true;
@@ -93,5 +96,12 @@ void sort(char occ[],int n,int occTm[]) {
                 occ[j]=tem;
             }
         }
+    }
+}
+
+void GetLine(string &sent,char a[]) {
+    getline(cin,sent);
+    for(int i=0;i<sent.length();i++) {
+        a[i]=sent.at(i);
     }
 }
