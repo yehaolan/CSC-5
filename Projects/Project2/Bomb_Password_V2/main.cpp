@@ -65,6 +65,7 @@ int main(int argc, char** argv) {
     
     //introduce the game
     introduce();
+    //Prompt user for level
     do {
         cout<<endl<<"*****************LEVEL SELECTION*****************"<<endl;
         cout<<"    1.Easy:"<<endl;
@@ -84,7 +85,7 @@ int main(int argc, char** argv) {
         if(level<1||level>3) 
             cout<<"Invalid Input"<<endl;
     }while(level<1||level>3);
-    //After choosing level, set the size of pswd and chances left
+    //According to level that player chose, set the size of pswd and chances left
     if(level==1||level==2) {
         size=SIZE1;
         chnsLft=TOTCHNS1;
@@ -111,7 +112,7 @@ int main(int argc, char** argv) {
         switch(result) {
             case'1': { //if the number and place both are correct
                 if(inside(inputDg,digit)) { //if user have finished that digit
-                    cout<<"You already finish this digit,"
+                    cout<<"You already finished this digit,"
                         <<"try other digits"<<endl;
                 } else {//user didn't finish this digit
                     replace(dash,guess,digit);//replace of the correct digit
@@ -146,14 +147,15 @@ int main(int argc, char** argv) {
         cout<<"You win this game after "<<tyTime<<" tries"<<endl;
         record(usdTime);
     }
-    cout<<"The answer is "<<answer<<endl;
+    cout<<endl<<"The answer is "<<answer<<endl;
+    cout<<"You spent "<<usdTime<<" seconds to play this game"<<endl<<endl;
     dspRecd();//display the record
     output.close();
     
     //Exit stage right
     return 0;
 }
-
+//According to level,generate the dash that will be displayed
 string toDash(int size) {
     string dashed="";
     for(int i=0;i<size;i++) {
@@ -161,10 +163,11 @@ string toDash(int size) {
     }
     return dashed;
 }
+//Introduction and Rule of the game
 void introduce() {
     cout<<"****************** Welcome to Bomb password *******************"<<endl;
-    cout<<"*     In this game, you should guess the 4-digit password     *"<<endl;
-    cout<<"*         First, you will input a number that you guess       *"<<endl;
+    cout<<"*  In this game, you should guess the 4 or 6-digit password   *"<<endl;
+    cout<<"*     First, you will input only one number that you guess    *"<<endl;
     cout<<"*         Then, you will input the digit of this number       *"<<endl;
     cout<<"*    The digit of the number from left to right is 1,2,3...   *"<<endl;
     cout<<"*      After you input these two information,the computer     *"<<endl;
@@ -174,10 +177,10 @@ void introduce() {
     cout<<"Press Enter to start the game";
     cin.ignore();
 }
-
+//ask user for guessing
 void ask(char& guess,int& digit,int size,int level,vector <int>ipDg,char pswd[],int &hin) {
     do {
-        cout<<"Please input a number you guess"<<endl;
+        cout<<"Please input a 1-digit number you guess(0-9)"<<endl;
         if(level==1)
             cout<<"If you need sample for input, type \'s\'"<<endl;
         if((level==2||level==3)&&hin<1)
@@ -196,7 +199,7 @@ void ask(char& guess,int& digit,int size,int level,vector <int>ipDg,char pswd[],
         }
     } while(guess<48||guess>57);
     do {
-        cout<<"Please input the digit of this number"<<endl;
+        cout<<"Please input the digit of this number"<<"(1-"<<size<<")"<<endl;
         cin>>digit;
         cin.ignore();
         if(digit<1||digit>size)
@@ -229,7 +232,7 @@ void replace(string& dash,char guess,int digit) {
     string part2=dash.substr(digit);
     dash=part1+guess+part2;
 }
-//return whether is digit has been finished
+//return whether this digit has been finished
 bool inside(const vector<int> inputDg,int digit) {
     bool temp=false;
     for(int i=0;i<inputDg.size();i++) {
@@ -251,10 +254,10 @@ void sample() {
     cout<<endl<<endl;
     input.close();
 }
-//randomly generate the password
+//randomly generate the password according to level
 void gtPswd(char pswd[],int level,const int SIZE1,const int SIZE2){
     bool diff=true;
-    if(level==1) {
+    if(level==1) { //every digit is different number
         for(int i=0;i<SIZE1;i++) {
             char temp;
             do {
@@ -337,7 +340,7 @@ void record(int usdTime) {
             }
         }
     }
-    //Output the current record
+    //Output the current record to file
     ofstream output;
     output.open("Record.dat");
     for(int i=0;i<tmRecd.size();i++) {
@@ -345,20 +348,23 @@ void record(int usdTime) {
     }
     output.close();
 }
+//Get the Top 10 Records and display
 void dspRecd() {
+    //declare variables
     const int ROW=15;
-    int tm;
-    int rc[ROW][COL]={};
+    int tm;//the time record from file
+    int rc[ROW][COL]={};//2D array
+    //Open the file
     ifstream input;
     input.open("Record.dat");
     for(int i=0;i<10&&input>>tm;i++) {
         rc[i][0]=(i+1);
         rc[i][1]=tm;
     }
-    
-    input.close();
-    cout<<"*********Top 10 Record*********"<<endl;
+    input.close(); //Close the file
+    cout<<"*********Top 10 Records*********"<<endl;
     cout<<"  Rank       Time(seconds)"<<endl;
+    //Formatted output the Top 10 records
     for(int i=0;i<10;i++) {
         for(int j=0;j<COL;j++) {
             if(rc[i][j]!=0)
