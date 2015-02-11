@@ -47,9 +47,9 @@ int main(int argc, char** argv) {
     const int TOTCHNS2=18;//total chance of the level 3
     const int SIZE1=4;//smaller size
     const int SIZE2=6;//larger size
-    int size;
     string dash;
     string answer;
+    int size;
     int level;
     int tyTime=0;  //how many tyTime user tried
     int strTime;   //start time of the game
@@ -184,12 +184,12 @@ void ask(char& guess,int& digit,int size,int level,vector <int>ipDg,char pswd[],
         if(level==1)
             cout<<"If you need sample for input, type \'s\'"<<endl;
         if((level==2||level==3)&&hin<1)
-            cout<<"If you need hint for answer, type \'i\'"<<endl;
+            cout<<"If you need hint for answer, type \'h\'"<<endl;
         cin>>guess;
         cin.ignore();
         if((guess=='s'||guess=='S')&&level==1) { //when player need sample
             sample();//output sample via ifstream
-        } else if((guess=='i'||guess=='I')&&(level==2||level==3)&&hin<1) { 
+        } else if((guess=='h'||guess=='H')&&(level==2||level==3)&&hin<1) { 
             //when player needs hint
             //limit only 1 hint player can get
             hint(ipDg,pswd,size);//display the hint
