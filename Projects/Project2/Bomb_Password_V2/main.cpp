@@ -29,6 +29,7 @@ bool inside(const vector<int>,int);//return whether this digit is finished
 void sample();//display the sample of guessing
 void hint(vector<int>,char [],int);
 int bin(int);//change an integer to binary
+void record(int);//save the top 10 player record 
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -50,6 +51,7 @@ int main(int argc, char** argv) {
     int tyTime=0;  //how many tyTime user tried
     int gusCorr=0;//how many correct number have been guessed 
     int chnsLft;  //chance counter(how many chances left)
+    int hin=0;//count how many times player use hint
     int digit=0;  //digit of the user guesses
     char guess=0; //the number user guesses
     char pswd[SIZE2]={};//the password store in the array
@@ -70,7 +72,7 @@ int main(int argc, char** argv) {
         cout<<"    3.Hard"<<endl;
         cout<<"      Feature: (1)6-digit"<<endl;
         cout<<"               (2)Might has repeat number"<<endl;
-        cout<<"               (3)No hint No sample input"<<endl;
+        cout<<"               (3)Including a hint for a digit"<<endl;
         cout<<"Please choose a level(Type 1,2,or 3)"<<endl;
         cin>>level;
         if(level<1||level>3) 
@@ -93,8 +95,7 @@ int main(int argc, char** argv) {
     dash=toDash(size);//get the dash
     
     //game begins
-    while(chnsLft>0&&gusCorr<size) {
-        int hin=0;//count how many times player use hint
+    while(chnsLft>0&&gusCorr<size) {    
         //Prompt user for the guess
         cout<<endl;
         cout<<"The password now looks like this: "<<dash<<endl;//Output dash
@@ -169,13 +170,13 @@ void ask(char& guess,int& digit,int size,int level,vector <int>ipDg,char pswd[],
         cout<<"Please input a number you guess"<<endl;
         if(level==1)
             cout<<"If you need sample for input, type \'s\'"<<endl;
-        if(level==2&&hin<1)
+        if((level==2||level==3)&&hin<1)
             cout<<"If you need hint for answer, type \'i\'"<<endl;
         cin>>guess;
         cin.ignore();
         if((guess=='s'||guess=='S')&&level==1) { //when player need sample
             sample();//output sample via ifstream
-        } else if((guess=='i'||guess=='I')&&level==2&&hin<1) { 
+        } else if((guess=='i'||guess=='I')&&(level==2||level==3)&&hin<1) { 
             //when player needs hint
             //limit only 1 hint player can get
             hint(ipDg,pswd,size);//display the hint
