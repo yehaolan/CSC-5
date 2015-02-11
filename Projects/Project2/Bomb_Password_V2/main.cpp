@@ -11,11 +11,13 @@
 #include <string>     
 #include <vector>
 #include <fstream>  //file I/O
+#include <iomanip>
 using namespace std;
 
 //User Libraries
 
 //Global Constants
+const int COL=2;//For 2-dimension array
 
 //Function Prototypes
 string toDash(int);//change the password to dash
@@ -30,6 +32,7 @@ void sample();//display the sample of guessing
 void hint(vector<int>,char [],int);
 int bin(int);//change an integer to binary
 void record(int);//save the top 10 player record 
+void dspRecd();//Display the top 10 record
 
 //Execution begins here
 int main(int argc, char** argv) {
@@ -49,6 +52,9 @@ int main(int argc, char** argv) {
     string answer;
     int level;
     int tyTime=0;  //how many tyTime user tried
+    int strTime;   //start time of the game
+    int endTime;   //ending time of the game
+    int usdTime;   //total time player play the game
     int gusCorr=0;//how many correct number have been guessed 
     int chnsLft;  //chance counter(how many chances left)
     int hin=0;//count how many times player use hint
@@ -93,7 +99,7 @@ int main(int argc, char** argv) {
         answer+=pswd[i];
     }
     dash=toDash(size);//get the dash
-    
+    strTime=time(0);//record beginning time
     //game begins
     while(chnsLft>0&&gusCorr<size) {    
         //Prompt user for the guess
@@ -129,6 +135,8 @@ int main(int argc, char** argv) {
         }
         tyTime++;//keep track of how many tyTime user have input
     }
+    endTime=time(0);
+    usdTime=endTime-strTime;//Get the used time
     if(chnsLft==0) { //No chances left for player
         cout<<"You lost"<<endl;
         output<<"You lost"<<endl;
@@ -136,8 +144,10 @@ int main(int argc, char** argv) {
     if(gusCorr==size) { //when 4 digits have been guessed correctly
         output<<"You win this game after "<<tyTime<<" tries"<<endl;
         cout<<"You win this game after "<<tyTime<<" tries"<<endl;
+        record(usdTime);
     }
     cout<<"The answer is "<<answer<<endl;
+    dspRecd();//display the record
     output.close();
     
     //Exit stage right
@@ -303,4 +313,59 @@ int bin(int a) {
         temp*=10;
     }
     return rs;
+}
+//Record the playing time and sort the time record
+void record(int usdTime) {
+    vector<int> tmRecd;
+    int tm;
+    //Get the previous records from file
+    ifstream input;
+    input.open("Record.dat");
+    while(input>>tm) {
+        tmRecd.push_back(tm);
+    }
+    input.close();
+    //Save the playing time to vector
+    tmRecd.push_back(usdTime);
+    //Sort the record with vector
+    for(int i=0;i<tmRecd.size()-1;i++) {
+        for(int j=i+1;j<tmRecd.size();j++) {
+            if(tmRecd[i]>tmRecd[j]) {
+                int temp=tmRecd[i];
+                tmRecd[i]=tmRecd[j];
+                tmRecd[j]=temp;
+            }
+        }
+    }
+    //Output the current record
+    ofstream output;
+    output.open("Record.dat");
+    for(int i=0;i<tmRecd.size();i++) {
+        output<<tmRecd[i]<<endl;
+    }
+    output.close();
+}
+void dspRecd() {
+    const int ROW=15;
+    int tm;
+    int rc[ROW][COL]={};
+    ifstream input;
+    input.open("Record.dat");
+    for(int i=0;i<10&&input>>tm;i++) {
+        rc[i][0]=(i+1);
+        rc[i][1]=tm;
+    }
+    
+    input.close();
+    cout<<"*********Top 10 Record*********"<<endl;
+    cout<<"  Rank       Time(seconds)"<<endl;
+    for(int i=0;i<10;i++) {
+        for(int j=0;j<COL;j++) {
+            if(rc[i][j]!=0)
+                cout<<setw(5)<<rc[i][j]<<"          ";
+            else
+                cout<<"  ----         ";
+        }
+        cout<<endl;
+    }
 }
