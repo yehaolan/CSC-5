@@ -29,7 +29,7 @@ bool indexOf(char,const char[],int);//return whether the char is in the char arr
 void replace(string&,char,int);//replace of the correct digit
 bool inside(const vector<int>,int);//return whether this digit is finished
 void sample();//display the sample of guessing
-void hint(vector<int>,char [],int);
+void hint(vector<int>,char [],int);//display the hint for players
 int bin(int);//change an integer to binary
 void record(int);//save the top 10 player record 
 void dspRecd();//Display the top 10 record
