@@ -47,10 +47,10 @@ int main(int argc, char** argv) {
     const int TOTCHNS2=18;//total chance of the level 3
     const int SIZE1=4;//smaller size
     const int SIZE2=6;//larger size
-    string dash;
-    string answer;
-    int size;
-    int level;
+    string dash;//the password that shown to player
+    string answer;//the correct answer
+    int size;//the specific size of answer
+    int level;//level that player chooses
     int tyTime=0;  //how many tyTime user tried
     int strTime;   //start time of the game
     int endTime;   //ending time of the game
@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
         cout<<"      Feature: (1)4 digit"<<endl;
         cout<<"               (2)No Repeat Number"<<endl;
         cout<<"               (3)Including sample input"<<endl;
-        cout<<"    2.Normal:"<<endl;
+        cout<<"    2.Medium:"<<endl;
         cout<<"      Feature: (1)4 digit"<<endl;
         cout<<"               (2)Might has repeat number"<<endl;
         cout<<"               (3)Including a hint for a digit"<<endl;
