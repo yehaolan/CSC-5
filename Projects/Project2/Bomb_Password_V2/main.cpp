@@ -1,8 +1,8 @@
 /* 
  * File:   main.cpp
  * Author: Haolan Ye(Benjamin)
- * Created on January 27, 2015, 12:32 PM
- * Purpose: Project1(Name of the game:Bomb Password)
+ * Created on Feb 3th, 2015, 12:32 PM
+ * Purpose: Project2(Name of the game:Bomb Password)
  */
 
 //system Libraries
